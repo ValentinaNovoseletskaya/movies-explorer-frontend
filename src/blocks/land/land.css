@@ -1,0 +1,8 @@
+.land {
+    display: flex;
+    position: relative;
+    align-content: space-between;
+    background-color: #073042;
+    column-gap: 190px;
+    padding: 75px 70px;
+}

@@ -1,0 +1,8 @@
+.profile__link {
+    color: #EE3465;
+    text-decoration: none;
+}
+
+.profile__link:hover {
+    opacity: 70%;
+}

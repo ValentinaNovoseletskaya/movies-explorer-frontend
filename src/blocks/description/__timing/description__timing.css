@@ -1,0 +1,7 @@
+.description__timing {
+    display: grid;
+    grid-template-columns: 20% auto;
+    grid-gap: 14px 0;
+    list-style: none;
+    padding-inline: unset;
+}

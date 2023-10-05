@@ -1,0 +1,6 @@
+.student__container {
+    display: flex;
+    flex-direction: row;
+    padding-top: 66px;
+    justify-content: space-between;
+}

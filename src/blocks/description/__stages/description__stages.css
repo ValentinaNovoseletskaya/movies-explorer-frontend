@@ -1,0 +1,7 @@
+.description__stages {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding-inline: unset;
+    margin: 70px 0 110px; 
+}

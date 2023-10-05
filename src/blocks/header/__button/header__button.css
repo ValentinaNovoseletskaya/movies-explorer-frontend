@@ -1,0 +1,17 @@
+.header__button {
+    background-color: #3DDC84;
+    text-decoration: none;
+    border: none;
+    border-radius: 3px; 
+    color: #000;
+    text-align: center;
+    cursor: pointer;
+    font-style: normal;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 20px;
+}
+
+.header__button:hover {
+    opacity: 80%;
+}
