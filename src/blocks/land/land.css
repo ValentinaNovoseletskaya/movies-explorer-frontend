@@ -6,3 +6,18 @@
     column-gap: 190px;
     padding: 75px 70px;
 }
+
+@media (max-width: 1024px) {
+    .land {
+        flex-direction: column-reverse;
+        gap: 48px;
+        align-items: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .land {
+        gap: 44px;
+        padding: 70px 30px;
+    }
+}

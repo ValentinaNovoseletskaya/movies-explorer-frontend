@@ -1,0 +1,14 @@
+.header__profile {
+    display: flex;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    gap: 7px;
+}
+
+@media (max-width: 1024px) {
+    .header__profile {
+        display: none;
+    }
+}

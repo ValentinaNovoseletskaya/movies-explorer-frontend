@@ -21,7 +21,7 @@ function Signup({onSignup}) {
 
   return (
     <section className="sign">
-      <img className="logo" src={logo} alt="Логотип" />
+      <Link to="/"><img className="logo" src={logo} alt="Логотип" /></Link>
       <p className="sign__welcome">Добро пожаловать!</p>
       <form className="sign__form" onSubmit={handleSubmit}>
         <label className="sign__input-name">Имя</label>

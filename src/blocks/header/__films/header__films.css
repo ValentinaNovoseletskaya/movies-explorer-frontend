@@ -1,0 +1,16 @@
+.header__films {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    gap: 16px;
+}
+
+@media (max-width: 1024px) {
+    .header__films {
+        display: none;
+    }
+}

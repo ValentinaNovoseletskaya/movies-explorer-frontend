@@ -1,0 +1,14 @@
+.popup__saved-films {    
+    text-decoration: none;
+    color: #FFF;
+    font-size: 18px;
+    line-height: 21.78px;
+    font-weight: 500;
+}
+
+.popup__saved-films:hover {
+    opacity: 80%;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-decoration-thickness: 2px;
+}

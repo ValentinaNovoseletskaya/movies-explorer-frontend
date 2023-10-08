@@ -1,0 +1,11 @@
+.popup__container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    text-align: center;
+    background-color:#202020;
+    margin: 0;
+    padding-bottom: 90px;
+    width: 520px;
+    justify-content: space-between;
+}

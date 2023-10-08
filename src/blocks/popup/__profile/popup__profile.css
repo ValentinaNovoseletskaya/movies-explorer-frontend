@@ -1,0 +1,5 @@
+.popup__profile {
+    position: relative;
+    flex-direction: row;
+    gap: 7px;
+}

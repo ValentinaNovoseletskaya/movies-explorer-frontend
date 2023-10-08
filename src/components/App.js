@@ -1,6 +1,6 @@
 // import {api} from '../utils/Api.js';
-// import {useEffect, useState} from 'react';
-import { Route, Routes } from "react-router-dom";
+import {useEffect, useState} from 'react';
+import { Route, Routes, Link } from "react-router-dom";
 import '../index.css';
 import Header from './Header.js';
 import Main from './Main.js';
@@ -16,11 +16,15 @@ import Signup from './Signup.js';
 import Login from './Login.js';
 import NotFoundPage from './NotFoundPage.js';
 import Profile from './Profile.js';
+import Search from './Search.js';
 import Films from './Films.js';
+import SavedFilms from './SavedFilms.js';
+import Popup from './Popup.js';
 // import ProtectedRoute from './ProtectedRoute.js';
 
 function App() {
-//     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+    const [useLoggedInToken, setUseLoggedInToken] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 //     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
 //     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
 //     const [isLoadingPlacePopup, setIsLoadingPlacePopup] = useState(false);
@@ -36,6 +40,9 @@ function App() {
 //     const [isSignupSuccess, setIsSignupSuccess] = useState(false);
 //     const [isAuthFail, setIsAuthFail] = useState(false);
 
+useEffect(() => {
+    setUseLoggedInToken(true);
+}, []);
 //     useEffect(() => {
 //        if(useLoggedInToken) {
 //         api.getAppInfo()
@@ -64,13 +71,13 @@ function App() {
 //         }
 //      }, []);
 
-//     function handleEditAvatarClick() {
-//         setIsEditAvatarPopupOpen(true);
-//     }
+    function handleMenuClick() {
+        setIsMenuOpen(true);
+    }
     
-//     function handleDeleteClick(card) {
-//         setToDeleteCard(card);
-//     }
+    function handleCloseMenuClick() {
+        setIsMenuOpen(false);
+    }
 
 //     function handleEditProfileClick() {
 //         setIsEditProfilePopupOpen(true);
@@ -198,7 +205,7 @@ function App() {
             <div className="page">
             <Routes>
                 <Route path="/" element={
-                    <><Header /><Main /><Footer /></>
+                    <><Header useLoggedInToken={useLoggedInToken} handleMenuClick={handleMenuClick}/><Main /><Footer /></>
                 } />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/signin" element={<Login />} />
@@ -206,18 +213,22 @@ function App() {
                     <><Header /><Profile /></>
                 } />
                 <Route path="/films" element={
-                    <><Header /><Films /><Footer /></>
+                    <><Header /><Search /><Films /><Footer /></>
+                } />
+                <Route path="/savedfilms" element={
+                    <><Header /><Search /><SavedFilms /><Footer /></>
                 } />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </div>
+        <Popup isMenuOpen={isMenuOpen} handleCloseMenuClick={handleCloseMenuClick}/>
             {/* <InfoTooltip isOpenSuccess={isSignupSuccess} isOpenFail={isAuthFail} onClose={closeAllPopups} /> 
             <EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} isLoading={isLoadingProfilePopup} onClose={closeAllPopups} />
             <EditAvatarPopup onUpdateAvatar={handleUpdateAvatar} isOpen={isEditAvatarPopupOpen} isLoading={isLoadingAvatarPopup} onClose={closeAllPopups} />
             <AddPlacePopup onAddPlace={handleAddPlaceSubmit} isOpen={isAddPlacePopupOpen} isLoading={isLoadingPlacePopup} onClose={closeAllPopups} />
             <ConfirmationPopup card={toDeleteCard} onConfirmDelete={handleCardDelete} onClose={closeAllPopups} />
             <ImagePopup card={selectedCard} onClose={closeAllPopups} /> */}
-        </div>
+    </div>
         //</CurrentUserContext.Provider>
     );
 }

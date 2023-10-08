@@ -1,0 +1,19 @@
+.header__profile-button {
+    background-color: #0F4157;
+    background-image: url("../../../images/login.svg");
+    background-repeat: no-repeat;
+    background-size: 12px 12px;
+    background-position: 50% 50%;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;    
+    align-self: center;
+}
+
+.header__profile-button:hover {
+    opacity: 0.8;
+}

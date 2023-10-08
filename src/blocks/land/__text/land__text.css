@@ -6,3 +6,17 @@
     max-width: 310px;
     opacity: 50%;
 }
+
+@media (max-width: 1024px) {
+    .land__text {        
+        max-width: 260px;
+        margin: 22px 0 92px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .land__text {        
+        margin: 24px 0 80px;
+    }
+}

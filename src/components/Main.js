@@ -1,19 +1,25 @@
+import {useRef} from 'react';
 import landing_picture from '../images/landing_picture.png';
 import photo from '../images/photo.jpg';
 import row from '../images/row.png';
 
 function Main() {
+    const aboutRef = useRef(null);
+    function handleScroll() {
+        aboutRef.current.scrollIntoView({ behavior: 'smooth' });        
+    }
+
     return (
         <main className="main">
             <section className="land">
                 <div className="land__container">
                     <h1 className="land__title">Учебный проект студента факультета Веб-разработки.</h1>
                     <p className="land__text">Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
-                    <button className="land__button">Узнать больше</button>
+                    <button className="land__button" onClick={handleScroll}>Узнать больше</button>
                 </div>
                 <img className="land__picture" src={landing_picture} alt="Планета веб" />
             </section>
-            <section className="description">
+            <section className="description" ref={aboutRef}>
                 <h2 className="section-title">О проекте</h2>
                 <ul className="description__stages">
                     <li>

@@ -1,0 +1,11 @@
+.search__shorts-button {
+    background: url("../../../images/smalltumb.png") no-repeat 0 0;
+    border: 0;
+    width: 36px;
+    height: 20px;
+    margin: 0;
+}
+
+.search__shorts:hover {
+    opacity: 70%;
+}

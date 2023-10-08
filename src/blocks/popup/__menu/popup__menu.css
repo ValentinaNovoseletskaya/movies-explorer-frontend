@@ -1,0 +1,6 @@
+.popup__menu {
+    display: flex;
+    flex-direction: column;
+    padding: 159px 0 0;    
+    gap: 28px;
+}

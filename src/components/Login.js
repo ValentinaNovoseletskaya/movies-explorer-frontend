@@ -21,7 +21,7 @@ function Login({onLogIn}) {
 
     return (
         <section className="sign">
-          <img className="logo" src={logo} alt="Логотип" />
+          <Link to="/"><img className="logo" src={logo} alt="Логотип" /></Link>
           <p className="sign__welcome">Рады видеть!</p>
           <form className="sign__form" onSubmit={handleSubmit}>
               <label className="sign__input-name">E-mail</label>
