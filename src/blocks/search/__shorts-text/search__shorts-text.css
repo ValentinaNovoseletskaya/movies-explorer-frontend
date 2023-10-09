@@ -6,3 +6,9 @@
     font-weight: 400;
     text-align: center;
 }
+
+@media (max-width: 450px) {
+    .search__shorts-text {
+        font-size: 11px;
+    }
+}

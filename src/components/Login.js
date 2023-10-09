@@ -24,6 +24,7 @@ function Login({onLogIn}) {
           <Link to="/"><img className="logo" src={logo} alt="Логотип" /></Link>
           <p className="sign__welcome">Рады видеть!</p>
           <form className="sign__form" onSubmit={handleSubmit}>
+            <fieldset className="sign__inputs">
               <label className="sign__input-name">E-mail</label>
               <input className="sign__input" id="email" name="email" type="email" placeholder="" value={formValue.email || '' }
               onChange={ e=>{
@@ -34,6 +35,7 @@ function Login({onLogIn}) {
               onChange={ e=>{
               setFormValue({...formValue, password: e.target.value})
               } } />
+            </fieldset>
               <button type="submit" className='save-button sign__button'>Войти</button>
           </form>      
           <div className="sign__login">

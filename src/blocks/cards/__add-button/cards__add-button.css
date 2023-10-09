@@ -14,3 +14,9 @@
 .cards__add-button:hover {
     opacity: 0.7;
 }
+
+@media (max-width: 450px) {
+    .cards__add-button {
+        padding: 11px 106px 9px;
+    }
+}

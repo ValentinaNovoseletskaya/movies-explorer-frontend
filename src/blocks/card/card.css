@@ -9,3 +9,15 @@
     overflow: hidden;
     min-height: 218px;    
 }
+
+@media (max-width: 1024px) {
+    .card {
+        min-height: 257px;
+    }
+}
+
+@media (max-width: 450px) {
+    .card {
+        min-height: 235px;
+    }
+}

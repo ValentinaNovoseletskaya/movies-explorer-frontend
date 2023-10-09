@@ -7,3 +7,10 @@
     font-weight: 500;
     margin: 0;
 }
+
+@media (max-width: 450px) {
+    .search__input {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}

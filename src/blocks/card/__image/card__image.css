@@ -4,3 +4,15 @@
     object-fit: cover;
     max-height: 151px;
 }
+
+@media (max-width: 1024px) {
+    .card__image {
+        min-height: 190px;
+    }
+}
+
+@media (max-width: 450px) {
+    .card__image {
+        min-height: 168px;
+    }
+}

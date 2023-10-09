@@ -10,11 +10,18 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 16.94px;
-    padding: 13px 126px 15px 124px;
-    margin: 91px 0 16px;
+    padding: 13px 126px 15px 124px;    
     width: 100%;
 }
 
 .sign__button:hover {
     opacity: 80%;
+}
+
+@media (max-width: 450px) {
+    .sign__button {
+        font-size: 12px;
+        line-height: 14.94px;
+        padding: 16px 0 15px;
+    }
 }

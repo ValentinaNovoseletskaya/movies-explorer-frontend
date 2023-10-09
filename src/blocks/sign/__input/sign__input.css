@@ -9,7 +9,12 @@
     margin: 0;
     border: none;
     border-radius: 8px;
-    width: 100%;
     padding: 15px;
     width: 366px;
+}
+
+@media (max-width: 450px) {
+    .sign__input {
+        width: 230px;
+    }
 }

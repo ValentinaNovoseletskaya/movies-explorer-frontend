@@ -6,3 +6,9 @@
 .sign__link:hover {
     opacity: 70%;
 }
+
+@media (max-width: 450px) {
+    .sign__link {
+        font-size: 12px;
+    }
+}

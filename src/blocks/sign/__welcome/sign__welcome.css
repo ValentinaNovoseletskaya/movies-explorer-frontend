@@ -2,5 +2,19 @@
     font-size: 24px;
     line-height: 29.05px;
     font-weight: 500;
-    margin: 40px 0;
+    margin: 40px 0 22px;
+}
+
+@media (max-width: 1024px) {
+    .sign__welcome {
+        margin: 40px 0 22px;
+    }
+}
+
+@media (max-width: 450px) {
+    .sign__welcome {
+        text-align: center;
+        margin: 52px 0 62px;
+        line-height: 25.05px;
+    }
 }

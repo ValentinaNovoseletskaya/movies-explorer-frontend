@@ -54,6 +54,7 @@
 @import url(./blocks/sign/sign.css);
 @import url(./blocks/sign/__welcome/sign__welcome.css);
 @import url(./blocks/sign/__form/sign__form.css);
+@import url(./blocks/sign/__inputs/sign__inputs.css);
 @import url(./blocks/sign/__input-name/sign__input-name.css);
 @import url(./blocks/sign/__input/sign__input.css);
 @import url(./blocks/sign/__button/sign__button.css);
@@ -88,7 +89,6 @@
 @import url(./blocks/search/__button/search__button.css);
 @import url(./blocks/search/__shorts/search__shorts.css);
 @import url(./blocks/search/__shorts-button/search__shorts-button.css);
-@import url(./blocks/search/__shorts-button/_on/search__shorts-button_on.css);
 @import url(./blocks/search/__shorts-text/search__shorts-text.css);
 @import url(./blocks/page-error/page-error.css);
 @import url(./blocks/page-error/__title/page-error__title.css);

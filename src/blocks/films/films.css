@@ -1,4 +1,19 @@
 .films {
     text-align: center;
     padding: 70px 70px 78px;
+    min-height: 310px;
+}
+
+@media (max-width: 1024px) {
+    .films {
+        padding: 20px 30px 78px;
+        min-height: 643px;     
+    }
+}
+
+@media (max-width: 450px) {
+    .films {
+        padding: 20px 12px 78px;
+        min-height: 846px;     
+    }
 }
