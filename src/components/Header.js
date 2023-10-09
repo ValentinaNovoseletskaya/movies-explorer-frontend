@@ -2,13 +2,17 @@ import logo from '../images/logo.png';
 import { Link, useLocation } from "react-router-dom";
 import HeaderMenu from './HeaderMenu';
 
-function Header({useLoggedInToken, handleMenuClick}) {
+function Header({handleMenuClick}) {
     const location = useLocation();
+    const isMainPage = location.pathname === "/";
     return (
-        <header className={`header ${ location.pathname === "/" ? "header_main" : "" }`}>
-            <Link to="/"><img className="logo" src={logo} alt="Логотип" /></Link>                
-            <HeaderMenu useLoggedInToken={useLoggedInToken} handleMenuClick={handleMenuClick}/>         
-        </header>
+        <>
+          
+            <header className={`header ${ isMainPage ? "header_main" : "" }`}>
+                <Link to="/"><img className="logo" src={logo} alt="Логотип" /></Link>                
+                <HeaderMenu isMainPage={isMainPage} handleMenuClick={handleMenuClick}/>         
+            </header>
+        </>
     );
 }
 

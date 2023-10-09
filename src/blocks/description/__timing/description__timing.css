@@ -5,3 +5,15 @@
     list-style: none;
     padding-inline: unset;
 }
+
+@media (max-width: 1024px) {
+    .description__timing {
+        grid-template-columns: 140px auto;
+    }
+}
+
+@media (max-width: 450px) {
+    .description__timing {
+        grid-template-columns: 100px auto;
+    }
+}

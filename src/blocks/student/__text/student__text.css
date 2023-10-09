@@ -3,3 +3,18 @@
     font-weight: 400;
     line-height: 22px;
 }
+
+@media (max-width: 1024px) {
+    .student__text {
+        font-size: 12px;
+        line-height: 18px;
+        max-width: 364px;
+    }
+}
+
+@media (max-width: 450px) {
+    .student__text {
+        font-size: 11px;
+        line-height: 16px; 
+    }
+}

@@ -1,5 +1,5 @@
 .technologies__element {
-    margin: 0 10px 0;
+    margin: 0;
     min-width: 90px;
     font-size: 14px;
     font-weight: 400;
@@ -8,4 +8,12 @@
     border-radius: 10px;
     text-align: center;
     padding: 21px 0 22px;
+}
+
+@media (max-width: 1024px) {
+    .technologies__element {
+        min-width: 84px;
+        font-size: 12px;
+        line-height: 13.94px;
+    }
 }

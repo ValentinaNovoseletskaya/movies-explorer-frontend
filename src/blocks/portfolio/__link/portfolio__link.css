@@ -1,7 +1,22 @@
 .portfolio__link {
+    background-image: url("../../../images/arrow.svg");
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    width: 29px;
+    height: 60px;
     cursor: pointer;
+    padding: 0;
 }
 
 .portfolio__link:hover {
     opacity: 70%;
+}
+
+@media (max-width: 450px) {
+    .portfolio__link {
+        width: 18px;
+        height: 28px;
+        background-size: 12px 28px;
+    }
 }

@@ -1,7 +1,19 @@
 .portfolio__types {
-    margin: 50px auto 0;
+    margin: 48px auto 0;
     display: flex;
     flex-direction: column;
     list-style: none;
     padding-inline: unset;
+}
+
+@media (max-width: 1024px) {
+    .portfolio__types {
+        margin: 45px auto 0;
+    }
+}
+
+@media (max-width: 450px) {
+    .portfolio__types {
+        margin: 45px auto 0;
+    }
 }

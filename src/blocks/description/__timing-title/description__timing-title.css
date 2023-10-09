@@ -8,3 +8,16 @@
     margin: 0;
     padding: 9px 0;
 }
+
+@media (max-width: 1024px) {
+    .description__timing-title {
+        line-height: 18.24px;
+    }
+}
+
+@media (max-width: 450px) {
+    .description__timing-title {
+        font-size: 11px;
+        line-height: 17.24px;
+    }
+}

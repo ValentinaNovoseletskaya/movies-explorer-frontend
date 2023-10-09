@@ -1,10 +1,10 @@
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
 
-function Profile({onLogIn}) {
+function Profile({user, onLogIn}) {
   const [formValue, setFormValue] = useState({
-    email: '',
-    password: ''
+    name: user.name,
+    email: user.email
   })
  
   function handleSubmit(e) {
@@ -13,16 +13,16 @@ function Profile({onLogIn}) {
       return;
     }
     onLogIn({
-        email: formValue.email,
-        password: formValue.password,
+      name: formValue.name,
+      email: formValue.email,
     });
   }
 
     return (
         <section className="profile">
-            <p className="profile__welcome">Привет!</p>
+            <p className="profile__welcome">Привет, {user.name}!</p>
             <form className="profile__form" onSubmit={handleSubmit}>
-                <div className="profile__name  profile__name_type_underlined">
+                <div className="profile__name  profile__name_underlined">
                     <label className="profile__input-name">Имя</label>
                     <input className="profile__input" id="name" name="name" type="name" placeholder="" value={formValue.name || '' }
                     onChange={ e=>{

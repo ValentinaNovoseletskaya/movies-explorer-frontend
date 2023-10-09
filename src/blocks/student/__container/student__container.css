@@ -4,3 +4,11 @@
     padding-top: 66px;
     justify-content: space-between;
 }
+
+@media (max-width: 450px) {
+    .student__container {
+        flex-direction: column-reverse;
+        padding-top: 60px;
+        gap: 40px;
+    }
+}

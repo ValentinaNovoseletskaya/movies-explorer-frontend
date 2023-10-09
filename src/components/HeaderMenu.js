@@ -1,9 +1,9 @@
 import { Route, Routes, Link } from "react-router-dom"; 
 
-function HeaderMenu({useLoggedInToken, handleMenuClick}) {
+function HeaderMenu({isMainPage, handleMenuClick}) {
     return (
         <>
-            {!useLoggedInToken ?
+            {isMainPage ?
            <Routes>
                 <Route path="/" element={
                     <div className="header__container">
@@ -12,7 +12,7 @@ function HeaderMenu({useLoggedInToken, handleMenuClick}) {
                     </div>       
                 }>
                 </Route>                
-            </Routes>           
+            </Routes>
             :
             <>
                 <div className="header__films">

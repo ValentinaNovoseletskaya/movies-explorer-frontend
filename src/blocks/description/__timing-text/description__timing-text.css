@@ -6,3 +6,10 @@
     line-height: 17px;
     text-align: center;
 }
+
+@media (max-width: 450px) {
+    .description__timing-text {
+        font-size: 11px;
+        line-height: 14px;;
+    }
+}

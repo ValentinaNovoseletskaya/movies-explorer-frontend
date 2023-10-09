@@ -4,8 +4,22 @@
     font-weight: 400;
     margin: 0;
     cursor: pointer;
+    letter-spacing: -0.04em;
 }
 
 .portfolio__type:hover {
     opacity: 70%;
+}
+
+@media (max-width: 1024px) {
+    .portfolio__type {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 450px) {
+    .portfolio__type {
+        font-size: 18px;    
+        line-height: 28px;
+    }
 }

@@ -1,7 +1,7 @@
 import {useRef} from 'react';
+import { Link } from "react-router-dom";
 import landing_picture from '../images/landing_picture.png';
 import photo from '../images/photo.jpg';
-import row from '../images/row.png';
 
 function Main() {
     const aboutRef = useRef(null);
@@ -13,7 +13,7 @@ function Main() {
         <main className="main">
             <section className="land">
                 <div className="land__container">
-                    <h1 className="land__title">Учебный проект студента факультета Веб-разработки.</h1>
+                    <h1 className="land__title">Учебный проект студента&nbsp;факультета <span className="land__title-space">Веб-разработки.</span></h1>
                     <p className="land__text">Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
                     <button className="land__button" onClick={handleScroll}>Узнать больше</button>
                 </div>
@@ -33,7 +33,7 @@ function Main() {
                 </ul>
                 <ul className="description__timing">
                     <li>
-                        <p className="description__timing-title description__timing-title_color_green">1 неделя</p>
+                        <p className="description__timing-title description__timing-title_colored">1 неделя</p>
                         <p className="description__timing-text">Back-end</p>
                     </li>
                     <li>
@@ -77,8 +77,8 @@ function Main() {
                         <p className="student__name">Виталий</p>
                         <p className="student__about">Фронтенд-разработчик, 30 лет</p>
                         <p className="student__text">Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена 
-        и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
-                        <p className="student__link">Github</p>
+        и&nbsp;дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
+                        <Link to="https://github.com/ValentinaNovoseletskaya" className="student__link">Github</Link>
                     </div>
                     <img className="student__photo" src={photo} alt="Фотограция студента" />                    
                 </div>
@@ -86,21 +86,21 @@ function Main() {
             <section className="portfolio">
                 <h2 className="portfolio__title">Портфолио</h2>
                 <ul className="portfolio__types">
-                    <li className="portfolio__container portfolio__container_type_underlined">
+                    <li className="portfolio__container portfolio__container_underlined">
                         <p className="portfolio__type">Статичный сайт</p>
-                        <p><img className="portfolio__link" src={row} alt="Переход по ссылке" /></p>
+                        <Link className="portfolio__link" to="https://github.com/ValentinaNovoseletskaya/how-to-learn"></Link>
                     </li>
-                    <li className="portfolio__container portfolio__container_type_underlined">
+                    <li className="portfolio__container portfolio__container_underlined">
                         <p className="portfolio__type">Адаптивный сайт</p>
-                        <p><img className="portfolio__link" src={row} alt="Переход по ссылке" /></p>
+                        <Link className="portfolio__link" to="https://github.com/ValentinaNovoseletskaya/russian-travel"></Link>
                     </li>
                     <li className="portfolio__container">
                         <p className="portfolio__type">Одностраничное приложение</p>
-                        <p><img className="portfolio__link" src={row} alt="Переход по ссылке" /></p>
+                        <Link className="portfolio__link" to="https://valentina.students.nomoredomainsicu.ru"></Link>
                     </li>
                 </ul>
             </section>
-        </main>          
+        </main>
     );
 }
 

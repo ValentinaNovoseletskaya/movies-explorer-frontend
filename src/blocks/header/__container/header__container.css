@@ -3,7 +3,10 @@
     align-items: center;
     column-gap: 30px;
     font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
+}
+
+@media (max-width: 450px) {
+    .header__container {
+        column-gap: 14px;
+    }
 }

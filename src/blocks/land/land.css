@@ -4,7 +4,7 @@
     align-content: space-between;
     background-color: #073042;
     column-gap: 190px;
-    padding: 75px 70px;
+    padding: 73px 70px;
 }
 
 @media (max-width: 1024px) {
@@ -12,12 +12,13 @@
         flex-direction: column-reverse;
         gap: 48px;
         align-items: center;
+        padding: 139px 70px 77px;
     }
 }
 
 @media (max-width: 500px) {
     .land {
         gap: 44px;
-        padding: 70px 30px;
+        padding: 68px 30px 30px;
     }
 }

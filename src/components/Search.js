@@ -17,14 +17,20 @@ function Search({onLogIn}) {
     });
   }
 
+  const [findShorts, setFindShorts] = useState(false); 
+
+  function handleChange(e) {
+    setFindShorts(!findShorts);
+  }
+
     return (
         <section className="search">
           <form className="search__form" onSubmit={handleSubmit}>
-            <input className="search__input" id="search" name="search" type="name" placeholder="Фильм" value="" onChange="" />
+            <input className="search__input" id="search" name="search" type="name" placeholder="Фильм"/>
             <button type="submit" className='search__button'></button>
           </form>      
           <div className="search__shorts">
-            <button type="submit" className='search__shorts-button'></button>
+            <input type="checkbox" className='search__shorts-button' onChange={handleChange} checked={findShorts} />
             <p className="search__shorts-text">Короткометражки</p>              
           </div>
         </section>
