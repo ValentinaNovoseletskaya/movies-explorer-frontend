@@ -1,0 +1,145 @@
+
+.description {
+    padding: 112px 70px 80px;    
+}
+
+@media (max-width: 1024px) {
+    .description {        
+        padding: 90px 50px 60px; 
+    }
+}
+
+@media (max-width: 550px) {
+    .description {        
+        padding: 71px 18px 61px; 
+    }
+}
+
+.description__stages {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding-inline: unset;
+    margin: 70px 0 110px;
+    gap: 52px;
+}
+
+@media (max-width: 1024px) {
+    .description__stages {        
+        gap: 36px;
+        margin-bottom: 92px;
+    }
+}
+
+@media (max-width: 550px) {
+    .description__stages {        
+        flex-direction: column;
+        margin: 60px 0 60px;
+        gap: 58px;
+    }
+}
+
+.description__stages-text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 26px 0 0;
+}
+
+@media (max-width: 1024px) {
+    .description__stages-text {        
+        font-size: 12px;
+        line-height: 18px;
+        margin: 22px 0 0;
+    }
+}
+
+@media (max-width: 550px) {
+    .description__stages-text {        
+        font-size: 11px;
+        line-height: 16px;
+        margin: 14px 0 0;
+    }
+}
+
+.description__stages-title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24.2px;
+    margin: 0;
+    letter-spacing: -0.04em;
+}
+
+@media (max-width: 550px) {
+    .description__stages-title {        
+        font-size: 18px;
+        line-height: 22.2px;
+    }
+}
+
+.description__timing {
+    display: grid;
+    grid-template-columns: 20% auto;
+    grid-gap: 14px 0;
+    list-style: none;
+    padding-inline: unset;
+}
+
+@media (max-width: 1024px) {
+    .description__timing {
+        grid-template-columns: 140px auto;
+    }
+}
+
+@media (max-width: 550px) {
+    .description__timing {
+        grid-template-columns: 100px auto;
+    }
+}
+
+.description__timing-text {
+    font-style: normal;
+    color: #8B8B8B;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+}
+
+@media (max-width: 550px) {
+    .description__timing-text {
+        font-size: 11px;
+        line-height: 14px;;
+    }
+}
+
+.description__timing-title {
+    background-color: #303030;    
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16.24px;
+    text-align: center;
+    margin: 0;
+    padding: 9px 0;
+}
+
+@media (max-width: 1024px) {
+    .description__timing-title {
+        line-height: 18.24px;
+    }
+}
+
+@media (max-width: 550px) {
+    .description__timing-title {
+        font-size: 11px;
+        line-height: 17.24px;
+    }
+}
+
+.description__timing-title_colored {
+    background-color: #3DDC84;
+    color: #000;
+}
