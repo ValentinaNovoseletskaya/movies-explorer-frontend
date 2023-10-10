@@ -1,22 +1,7 @@
 import './Search.css';
 import {useState} from 'react';
 
-function Search({onLogIn}) {
-  const [formValue] = useState({
-    email: '',
-    password: ''
-  })
- 
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (!formValue.email || !formValue.password){
-      return;
-    }
-    onLogIn({
-        email: formValue.email,
-        password: formValue.password,
-    });
-  }
+function Search() {
 
   const [findShorts, setFindShorts] = useState(false); 
 
@@ -26,7 +11,7 @@ function Search({onLogIn}) {
 
     return (
         <section className="search">
-          <form className="search__form" onSubmit={handleSubmit}>
+          <form className="search__form">
             <input className="search__input" id="search" name="search" type="name" placeholder="Фильм"/>
             <button type="submit" className='search__button'></button>
           </form>      
