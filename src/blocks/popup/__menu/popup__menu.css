@@ -4,3 +4,10 @@
     padding: 159px 0 0;    
     gap: 28px;
 }
+
+@media (max-width: 450px) {
+    .popup__menu {
+        padding: 146px 0 0;
+        gap: 24px;
+    }
+}

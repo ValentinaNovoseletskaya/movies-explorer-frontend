@@ -1,5 +1,18 @@
 .profile__form {
 margin: 0 auto;
-padding: 123px 0 16px;
+padding: 108px 0 16px;
 width: 410px;
+}
+
+@media (max-width: 1024px) {
+    .profile__form {
+        padding: 80px 0 16px;
+    }
+}
+
+@media (max-width: 450px) {
+    .profile__form {
+        padding: 64px 0 16px;
+        max-width: 260px;
+    }
 }

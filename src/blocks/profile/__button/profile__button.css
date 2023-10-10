@@ -3,10 +3,27 @@
     border: none;
     color: #FFF;
     margin: 203px auto 0;
+    font-size: 13px;
+    line-height: 15.73px;
+    font-weight: 400;
     cursor: pointer;
 }
 
 
 .profile__button:hover {
     opacity: 80%;
+}
+
+@media (max-width: 1024px) {
+    .profile__button {
+        margin: 194px auto 0;
+    }
+}
+
+@media (max-width: 450px) {
+    .profile__button {
+        margin: 362px auto 0;
+        font-size: 12px;
+        line-height: 14.73px;
+    }
 }

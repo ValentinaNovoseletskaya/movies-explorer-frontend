@@ -3,5 +3,19 @@
     font-weight: 400;
     line-height: 19.36px;
     margin: 0;
-    padding-bottom: 186px;
+    padding: 5px 0 182px;
+}
+
+@media (max-width: 1024px) {
+    .page-error__text {
+        padding-bottom: 182px;
+    }
+}
+
+@media (max-width: 450px) {
+    .page-error__text {
+        padding: 10px 0 282px;
+        font-size: 12px;
+        line-height: 14.52px;
+    }
 }

@@ -11,3 +11,16 @@
 .page-error__link:hover {
     opacity: 70%;
 }
+
+@media (max-width: 1024px) {
+    .page-error__link {
+        margin-bottom: 152px;
+    }
+}
+
+@media (max-width: 450px) {
+    .page-error__link {
+        font-size: 12px;
+        line-height: 14.52px;
+    }
+}
