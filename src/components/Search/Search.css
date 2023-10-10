@@ -1,0 +1,102 @@
+.search {
+    text-align: center;
+    padding: 70px 70px 48px;
+}
+
+@media (max-width: 1024px) {
+    .search {
+        padding: 75px 30px 55px;
+    }
+}
+
+@media (max-width: 450px) {
+    .search {
+        padding: 77px 12px 55px;
+    }
+}
+
+.search__form {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 11px;
+    margin: 0;
+    border-bottom: solid #424242 1px;
+}
+
+.search__input {
+    background-color: transparent;
+    border: none;
+    color: #8B8B8B;
+    font-size: 28px;
+    line-height: 30px;
+    font-weight: 500;
+    margin: 0;
+}
+
+@media (max-width: 450px) {
+    .search__input {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
+
+.search__button {
+    background: url("../../images/find.png") no-repeat 0 0;
+    border: 0;
+    width: 34px;
+    height: 34px;
+}
+
+.search__button:hover {
+    opacity: 70%;
+}
+
+.search__shorts {
+    display: flex;
+    padding: 32px 0 0;
+    gap: 14px;
+}
+
+@media (max-width: 1024px) {
+    .search__shorts {
+        padding: 30px 0 55px;
+        flex-direction: row-reverse;
+        justify-content: right;
+    }
+}
+
+@media (max-width: 450px) {
+    .search__shorts {
+        padding: 40px 0 15px;
+        justify-content: center;
+    }
+}
+
+.search__shorts-button {
+    display: block;
+    appearance: none;
+    background: url("../../images/smalltumboff.png") no-repeat 0 0;
+    border: 0;
+    width: 36px;
+    height: 20px;
+    margin: 0;
+}
+
+.search__shorts-button:checked {
+    background: url("../../images/smalltumb.png");
+}
+
+.search__shorts-text {
+    margin: 0;
+    padding-top: 1px;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 400;
+    text-align: center;
+}
+
+@media (max-width: 450px) {
+    .search__shorts-text {
+        font-size: 11px;
+    }
+}

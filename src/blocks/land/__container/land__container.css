@@ -1,7 +1,0 @@
-@media (max-width: 1024px) {
-    .land__container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-}

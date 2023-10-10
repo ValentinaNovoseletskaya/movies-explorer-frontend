@@ -1,0 +1,186 @@
+.films {
+    text-align: center;
+    padding: 70px 70px 78px;
+    min-height: 310px;
+}
+
+@media (max-width: 1024px) {
+    .films {
+        padding: 20px 30px 78px;
+        min-height: 643px;     
+    }
+}
+
+@media (max-width: 450px) {
+    .films {
+        padding: 20px 12px 78px;
+        min-height: 846px;     
+    }
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 270px));
+    grid-auto-rows: 1fr;
+    column-gap: 20px;
+    row-gap: 32px;
+    max-width: 1140px;
+    padding-bottom: 30px;
+}
+
+@media (max-width: 1024px) {
+    .cards {
+        grid-template-columns: repeat(auto-fit, minmax(339px, 339px));
+        column-gap: 30px;
+        row-gap: 36px;
+    }
+}
+
+@media (max-width: 450px) {
+    .cards {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+        gap: 20px;
+    }
+}
+
+.cards__add-block {
+    display: block;
+    text-align: center;
+    margin: 48px 70px 0;
+}
+
+@media (max-width: 450px) {
+    .cards__add-block {
+        margin: 48px 0 12px;
+    }
+}
+
+.cards__add-button {
+    color: #FFF;
+    padding: 11px 148px 9px;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 0;
+    border: #424242 solid 1px;
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 14.52px;
+    font-weight: 500;
+}
+
+.cards__add-button:hover {
+    opacity: 0.7;
+}
+
+@media (max-width: 450px) {
+    .cards__add-button {
+        padding: 11px 106px 9px;
+    }
+}
+
+.card {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    text-align: left;
+    background-color: #222222;
+    box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;    
+    overflow: hidden;
+    min-height: 218px;    
+}
+
+@media (max-width: 1024px) {
+    .card {
+        min-height: 257px;
+    }
+}
+
+@media (max-width: 450px) {
+    .card {
+        min-height: 235px;
+    }
+}
+
+.card__title {
+    display: flex;    
+    justify-content: space-between;
+    align-items: center;    
+    margin: 0;
+    padding: 14px 12px 0;
+}
+
+.card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-height: 151px;
+}
+
+@media (max-width: 1024px) {
+    .card__image {
+        min-height: 190px;
+    }
+}
+
+@media (max-width: 450px) {
+    .card__image {
+        min-height: 168px;
+    }
+}
+
+.card__time {
+    font-size: 11px;
+    line-height: 13.31px;
+    font-weight: 400;
+    margin: 0;
+    color: #8B8B8B;
+    padding: 10px 12px 14px; 
+}
+
+.card__dislike-button {
+    background-color: transparent;
+    background-image: url("../../images/delete.svg");
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    background-position: 50% 50%;
+    width: 16px;
+    height: 16px;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+    
+.card__dislike-button:hover {
+    opacity: 0.8;
+}
+
+.card__text {
+    font-size: 13px;
+    line-height: 15.73px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.card__like-button {
+    background-color: transparent;
+    background-image: url("../../images/like.svg");
+    background-repeat: no-repeat;
+    background-size: 28px 28px;
+    background-position: 50% 25%;
+    width: 16px;
+    height: 16px;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+.card__like-button:hover {
+    opacity: 0.8;
+}
+
+/* .card__like-button_active {
+    background-image: url("../../images/like-active.png");
+} */

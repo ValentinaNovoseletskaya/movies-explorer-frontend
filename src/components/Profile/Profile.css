@@ -1,0 +1,130 @@
+.profile {
+    padding: 74px 70px;
+    text-align: center;
+}
+
+@media (max-width: 450px) {
+    .profile {
+        padding: 64px 30px 30px;
+    }
+}
+
+.profile__welcome {
+    text-align: center;
+    font-size: 24px;
+    line-height: 29.05px;
+    font-weight: 500;
+    margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+    .profile__welcome {
+        padding: 156px 0 0;
+    }
+}
+
+@media (max-width: 450px) {
+    .profile__welcome {
+        padding: 0;
+    }
+}
+
+.profile__name {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    margin: 17px 0 0;
+}
+
+.profile__name_underlined {
+    border-bottom: 1px solid #424242;
+}
+
+.profile__form {
+    margin: 0 auto;
+    padding: 108px 0 16px;
+    width: 410px;
+    }
+    
+    @media (max-width: 1024px) {
+        .profile__form {
+            padding: 80px 0 16px;
+        }
+    }
+    
+    @media (max-width: 450px) {
+        .profile__form {
+            padding: 64px 0 16px;
+            max-width: 260px;
+        }
+    }
+
+    .profile__input {
+        background-color: transparent;
+        border: none;
+        color: #FFF;
+        font-size: 11px;
+        line-height: 13.31px;
+        font-weight: 400;
+        margin: 0;
+        text-align: right;
+    }
+
+    .profile__input-name {
+        display: block;
+        color: #FFF;
+        font-size: 11px;
+        line-height: 13.31px;
+        font-weight: 500;
+        margin: 0;
+    }
+
+    .profile__button {
+        background-color: transparent;
+        border: none;
+        color: #FFF;
+        margin: 203px auto 0;
+        font-size: 13px;
+        line-height: 15.73px;
+        font-weight: 400;
+        cursor: pointer;
+    }
+    
+    
+    .profile__button:hover {
+        opacity: 80%;
+    }
+    
+    @media (max-width: 1024px) {
+        .profile__button {
+            margin: 194px auto 0;
+        }
+    }
+    
+    @media (max-width: 450px) {
+        .profile__button {
+            margin: 362px auto 0;
+            font-size: 12px;
+            line-height: 14.73px;
+        }
+    }
+
+    .profile__link {
+        color: #EE3465;
+        text-decoration: none;
+        font-size: 13px;
+        line-height: 15.73px;
+        font-weight: 400;
+    }
+    
+    .profile__link:hover {
+        opacity: 70%;
+    }
+    
+    @media (max-width: 450px) {
+        .profile__link {
+            font-size: 12px;
+            line-height: 14.73px;
+        }
+    }
