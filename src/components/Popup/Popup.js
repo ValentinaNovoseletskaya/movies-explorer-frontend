@@ -8,8 +8,8 @@ function Popup({isMenuOpen, handleCloseMenuClick}) {
                 <button className="popup__close-button" onClick={handleCloseMenuClick}></button>
                 <div className="popup__menu">
                     <Link to="/" className="popup__main">Главная</Link>
-                    <Link to="/films" className="popup__films">Фильмы</Link>
-                    <Link to="/savedfilms" className="popup__saved-films">Сохраненные фильмы</Link>
+                    <Link to="/movies" className="popup__films">Фильмы</Link>
+                    <Link to="/saved-movies" className="popup__saved-films">Сохраненные фильмы</Link>
                 </div>
                 <div className="popup__profile">
                     <Link to="/profile" className="popup__profile-link">Аккаунт

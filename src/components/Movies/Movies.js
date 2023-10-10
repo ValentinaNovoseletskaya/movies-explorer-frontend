@@ -1,5 +1,5 @@
 
-import './Films.css';
+import './Movies.css';
 import film1 from '../../images/film1.jpg';
 import film2 from '../../images/film2.jpg';
 import film3 from '../../images/film3.jpg';
@@ -17,7 +17,7 @@ import film14 from '../../images/film14.jpg';
 import film15 from '../../images/film15.jpg';
 import film16 from '../../images/film16.jpg';
 
-function Films() {
+function Movies() {
 
 
     return (
@@ -159,4 +159,4 @@ function Films() {
     );
 }
 
-export default Films;
+export default Movies;

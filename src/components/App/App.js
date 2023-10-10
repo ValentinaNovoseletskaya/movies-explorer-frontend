@@ -9,8 +9,8 @@ import Login from '../Login/Login';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import Profile from '../Profile/Profile';
 import Search from '../Search/Search';
-import Films from '../Films/Films';
-import SavedFilms from '../SavedFilms/SavedFilms';
+import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
 import Popup from '../Popup/Popup';
 import {userData} from '../../utils/userData'
 
@@ -45,11 +45,11 @@ function App() {
                     <Route path="/profile" element={
                         <><Header handleMenuClick={handleMenuClick}/><Profile user={currentUser} /></>
                     } />
-                    <Route path="/films" element={
-                        <><Header handleMenuClick={handleMenuClick}/><Search /><Films /><Footer /></>
+                    <Route path="/movies" element={
+                        <><Header handleMenuClick={handleMenuClick}/><Search /><Movies /><Footer /></>
                     } />
-                    <Route path="/savedfilms" element={
-                        <><Header handleMenuClick={handleMenuClick}/><Search /><SavedFilms /><Footer /></>
+                    <Route path="/saved-movies" element={
+                        <><Header handleMenuClick={handleMenuClick}/><Search /><SavedMovies /><Footer /></>
                     } />
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>

@@ -1,9 +1,9 @@
-import './SavedFilms.css';
+import './SavedMovies.css';
 import film1 from '../../images/film1.jpg';
 import film2 from '../../images/film2.jpg';
 import film3 from '../../images/film3.jpg';
 
-function SavedFilms() {
+function SavedMovies() {
 
     return (         
         <section className="films">
@@ -37,4 +37,4 @@ function SavedFilms() {
     );
 }
 
-export default SavedFilms;
+export default SavedMovies;

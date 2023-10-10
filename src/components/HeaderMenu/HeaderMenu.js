@@ -17,8 +17,8 @@ function HeaderMenu({isMainPage, handleMenuClick}) {
             :
             <>
                 <div className="header-menu__films">
-                    <Link to="/films" className="header-menu__link">Фильмы</Link>
-                    <Link to="/savedfilms" className="header-menu__link">Сохраненные фильмы</Link>
+                    <Link to="/movies" className="header-menu__link">Фильмы</Link>
+                    <Link to="/saved-movies" className="header-menu__link">Сохраненные фильмы</Link>
                 </div>
                 <div className="header-menu__profile">
                     <Link to="/profile" className="header-menu__link">Аккаунт
