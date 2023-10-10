@@ -79,7 +79,7 @@ function Main() {
                         <p className="student__about">Фронтенд-разработчик, 30 лет</p>
                         <p className="student__text">Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена 
         и&nbsp;дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
-                        <Link to="https://github.com/ValentinaNovoseletskaya" className="student__link">Github</Link>
+                        <Link target="_blank" to="https://github.com/ValentinaNovoseletskaya" className="student__link">Github</Link>
                     </div>
                     <img className="student__photo" src={photo} alt="Фотограция студента" />                    
                 </div>
@@ -89,15 +89,15 @@ function Main() {
                 <ul className="portfolio__types">
                     <li className="portfolio__container portfolio__container_underlined">
                         <p className="portfolio__type">Статичный сайт</p>
-                        <Link className="portfolio__link" to="https://github.com/ValentinaNovoseletskaya/how-to-learn"></Link>
+                        <Link className="portfolio__link" target="_blank" to="https://github.com/ValentinaNovoseletskaya/how-to-learn"></Link>
                     </li>
                     <li className="portfolio__container portfolio__container_underlined">
                         <p className="portfolio__type">Адаптивный сайт</p>
-                        <Link className="portfolio__link" to="https://github.com/ValentinaNovoseletskaya/russian-travel"></Link>
+                        <Link className="portfolio__link" target="_blank" to="https://github.com/ValentinaNovoseletskaya/russian-travel"></Link>
                     </li>
                     <li className="portfolio__container">
                         <p className="portfolio__type">Одностраничное приложение</p>
-                        <Link className="portfolio__link" to="https://valentina.students.nomoredomainsicu.ru"></Link>
+                        <Link className="portfolio__link" target="_blank" to="https://valentina.students.nomoredomainsicu.ru"></Link>
                     </li>
                 </ul>
             </section>

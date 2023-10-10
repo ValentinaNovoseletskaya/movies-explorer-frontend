@@ -41,6 +41,13 @@
     gap: 20px;    
 }
 
+.footer__link {
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+    margin: 12px 0;
+}
+
 @media (max-width: 450px) {
     .footer__links {
         flex-direction: column;
