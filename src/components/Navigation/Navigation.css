@@ -45,6 +45,7 @@
     font-size: 13px;
     line-height: 18px;
     gap: 16px;
+    padding-left: 52px;
 }
 
 @media (max-width: 1000px) {
