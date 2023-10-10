@@ -1,24 +1,19 @@
 import './Movies.css';
 import Movie from '../Movie/Movie';
-import {moviesImages} from '../../utils/moviesImages';
 
- 
-
-function Movies() {
-
-
+function Movies({movies}) { 
+   
     return (
-        <section className="films">
-            <div className="cards">
-                {moviesImages.map((movie) => (
+        <main className="films">
+            <div className="movies">
+                {movies.map((movie) => (
                     <Movie film={movie}/> 
-                ))}   
-              
+                ))}              
             </div>
-            <div className="cards__add-block">
-                <button type="submit" className="cards__add-button">Ещё</button>
+            <div className="movies__add-block">
+                <button type="submit" className="movies__add-button">Ещё</button>
             </div>
-        </section>
+        </main>
     );
 }
 

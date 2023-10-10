@@ -65,7 +65,7 @@
 .popup__menu {
     display: flex;
     flex-direction: column;
-    padding: 159px 0 0;    
+    padding: 159px 0 0;
     gap: 28px;
 }
 
@@ -81,7 +81,7 @@
     color: #FFF;
     font-size: 18px;
     line-height: 21.78px;
-    font-weight: 500;    
+    font-weight: 500;
 }
 
 .popup__films:hover {
@@ -123,8 +123,8 @@
 
 .popup__profile {
     display: flex;
-    position: relative;    
-    justify-content: center;    
+    position: relative;
+    justify-content: center;
 }
 
 .popup__profile-link {
@@ -156,7 +156,7 @@
     border: none;
     cursor: pointer;
     margin: 0;
-    padding: 0;    
+    padding: 0;
     align-self: center;
 }
 

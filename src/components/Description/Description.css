@@ -1,17 +1,17 @@
 
 .description {
-    padding: 112px 70px 80px;    
+    padding: 112px 70px 80px;
 }
 
 @media (max-width: 1024px) {
     .description {        
-        padding: 90px 50px 60px; 
+        padding: 90px 50px 60px;
     }
 }
 
 @media (max-width: 550px) {
     .description {        
-        padding: 71px 18px 61px; 
+        padding: 71px 18px 61px;
     }
 }
 
@@ -116,7 +116,7 @@
 }
 
 .description__timing-title {
-    background-color: #303030;    
+    background-color: #303030;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;

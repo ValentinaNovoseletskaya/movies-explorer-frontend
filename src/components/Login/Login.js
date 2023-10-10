@@ -21,7 +21,7 @@ function Login({onLogIn}) {
   }
 
     return (
-        <section className="sign">
+        <main className="sign">
           <Link to="/"><img className="login__logo" src={logo} alt="Логотип" /></Link>
           <p className="sign__welcome">Рады видеть!</p>
           <form className="sign__form" onSubmit={handleSubmit}>
@@ -43,7 +43,7 @@ function Login({onLogIn}) {
               <p className="sign__login-text">Еще не зарегистрированы?&nbsp;</p>
               <Link to="/signup" className="sign__link">Регистрация</Link>
           </div>
-        </section>
+        </main>
     );
 }
 

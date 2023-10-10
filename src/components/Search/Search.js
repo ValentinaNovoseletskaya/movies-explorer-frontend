@@ -3,7 +3,7 @@ import {useState} from 'react';
 
 function Search() {
 
-  const [findShorts, setFindShorts] = useState(false); 
+  const [findShorts, setFindShorts] = useState(false);
 
   function handleChange(e) {
     setFindShorts(!findShorts);

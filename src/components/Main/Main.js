@@ -1,6 +1,5 @@
 import './Main.css';
 import {useRef} from 'react';
-import { Link } from "react-router-dom";
 import Promo from '../Promo/Promo';
 import Description from '../Description/Description';
 import Technologies from '../Technologies/Technologies';

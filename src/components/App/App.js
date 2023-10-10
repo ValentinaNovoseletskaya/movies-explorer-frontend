@@ -13,9 +13,10 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Popup from '../Popup/Popup';
 import {userData} from '../../utils/userData'
+import {moviesImages} from '../../utils/moviesImages';
 
 function App() { 
-    const [isMenuOpen, setIsMenuOpen] = useState(false); 
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [currentUser, setCurrentUser] = useState('');
  
 
@@ -30,7 +31,6 @@ function App() {
     function handleCloseMenuClick() {
         setIsMenuOpen(false);
     }
-  
 
     return (
         <div className="body">
@@ -46,10 +46,10 @@ function App() {
                         <><Header handleMenuClick={handleMenuClick}/><Profile user={currentUser} /></>
                     } />
                     <Route path="/movies" element={
-                        <><Header handleMenuClick={handleMenuClick}/><Search /><Movies /><Footer /></>
+                        <><Header handleMenuClick={handleMenuClick}/><Search /><Movies movies={moviesImages}/><Footer /></>
                     } />
                     <Route path="/saved-movies" element={
-                        <><Header handleMenuClick={handleMenuClick}/><Search /><SavedMovies /><Footer /></>
+                        <><Header handleMenuClick={handleMenuClick}/><Search /><SavedMovies movies={moviesImages} /><Footer /></>
                     } />
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>

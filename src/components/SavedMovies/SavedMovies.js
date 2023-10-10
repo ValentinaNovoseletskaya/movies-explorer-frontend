@@ -1,18 +1,10 @@
-import './SavedMovies.css';
-import Movie from '../Movie/Movie';
-import {moviesImages} from '../../utils/moviesImages';
+import Movies from '../Movies/Movies';
 
-function SavedMovies() {
-    const savedMovies = moviesImages.slice(0, 3);
-    return (         
-        <section className="films">
-            <div className="cards">
-                {savedMovies.map((movie) => (
-                    <Movie film={movie}/> 
-                ))}
-            </div>
-        </section>
-    );
+function SavedMovies({movies}) {
+    const savedMovies = movies.slice(0, 3);
+    return (          
+            <Movies movies={savedMovies}/>  
+            );
 }
 
 export default SavedMovies;

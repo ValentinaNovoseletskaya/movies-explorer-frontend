@@ -1,17 +1,23 @@
 import './Movie.css';
+import {useState} from 'react';
 
 function Movie({film}) {
 
+    const [isLiked, setIsLiked] = useState(false);
+    function handleLikeClick() {
+        setIsLiked(!isLiked);
+    };
+    
 
     return (
-                <div className="card">
-                    <img className="card__image" src={film} alt="Обложка фильма"/>
-                    <div className="card__title">
-                        <h3 className="card__text">33 слова о дизайне</h3>
-                        <button type="submit" className='card__like-button'></button>                    
-                    </div>
-                    <p className="card__time">1ч42м</p>
-                </div>
+        <div className="movie">
+            <img className="movie__image" src={film} alt="Обложка фильма"/>
+            <div className="movie__title">
+                <h3 className="movie__text">33 слова о дизайне</h3>
+                <button type="submit" className={`movie__like-button ${isLiked ? "movie__like-button_active": ""} `} onClick={handleLikeClick}></button>                    
+            </div>
+            <p className="movie__time">1ч42м</p>
+        </div>
     );
 }
 

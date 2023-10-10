@@ -1,9 +1,9 @@
-import './Promo.css'; 
+import './Promo.css';
 import landing_picture from '../../images/landing_picture.png';
 
 function Promo({aboutRef}) { 
     function handleScroll() {
-        aboutRef.current.scrollIntoView({ behavior: 'smooth' });        
+        aboutRef.current.scrollIntoView({ behavior: 'smooth' });
     }
 
     return ( 

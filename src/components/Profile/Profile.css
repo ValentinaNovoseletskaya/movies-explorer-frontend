@@ -3,7 +3,7 @@
     text-align: center;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 540px) {
     .profile {
         padding: 64px 30px 30px;
     }
@@ -23,7 +23,7 @@
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 540px) {
     .profile__welcome {
         padding: 0;
     }
@@ -53,7 +53,7 @@
         }
     }
     
-    @media (max-width: 450px) {
+    @media (max-width: 540px) {
         .profile__form {
             padding: 64px 0 16px;
             max-width: 260px;
@@ -102,7 +102,7 @@
         }
     }
     
-    @media (max-width: 450px) {
+    @media (max-width: 540px) {
         .profile__button {
             margin: 362px auto 0;
             font-size: 12px;
@@ -122,7 +122,7 @@
         opacity: 70%;
     }
     
-    @media (max-width: 450px) {
+    @media (max-width: 540px) {
         .profile__link {
             font-size: 12px;
             line-height: 14.73px;

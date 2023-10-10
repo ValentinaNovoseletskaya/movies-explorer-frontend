@@ -9,7 +9,7 @@
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 500px) {
     .search {
         padding: 77px 12px 55px;
     }
@@ -33,7 +33,7 @@
     margin: 0;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 500px) {
     .search__input {
         font-size: 18px;
         line-height: 22px;
@@ -65,7 +65,7 @@
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 500px) {
     .search__shorts {
         padding: 40px 0 15px;
         justify-content: center;
@@ -95,7 +95,7 @@
     text-align: center;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 500px) {
     .search__shorts-text {
         font-size: 11px;
     }

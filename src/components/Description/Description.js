@@ -1,4 +1,4 @@
-import './Description.css'; 
+import './Description.css';
 
 function Description({aboutRef}) { 
 

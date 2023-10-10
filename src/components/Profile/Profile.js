@@ -20,7 +20,7 @@ function Profile({user, onLogIn}) {
   }
 
     return (
-        <section className="profile">
+        <main className="profile">
             <p className="profile__welcome">Привет, {user.name}!</p>
             <form className="profile__form" onSubmit={handleSubmit}>
                 <div className="profile__name  profile__name_underlined">
@@ -40,7 +40,7 @@ function Profile({user, onLogIn}) {
                 <button type="submit" className='save-button profile__button'>Редактировать</button>
             </form>
             <Link to="/" className="profile__link">Выйти из аккаунта</Link>
-        </section>
+        </main>
     );
 }
 
