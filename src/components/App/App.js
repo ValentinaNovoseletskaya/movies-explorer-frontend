@@ -46,10 +46,10 @@ function App() {
                         <><Header handleMenuClick={handleMenuClick}/><Profile user={currentUser} /></>
                     } />
                     <Route path="/movies" element={
-                        <><Header handleMenuClick={handleMenuClick}/><Search /><Movies movies={moviesImages}/><Footer /></>
+                        <><Header handleMenuClick={handleMenuClick}/><Movies movies={moviesImages}/><Footer /></>
                     } />
                     <Route path="/saved-movies" element={
-                        <><Header handleMenuClick={handleMenuClick}/><Search /><SavedMovies movies={moviesImages} /><Footer /></>
+                        <><Header handleMenuClick={handleMenuClick}/><SavedMovies movies={moviesImages} /><Footer /></>
                     } />
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
