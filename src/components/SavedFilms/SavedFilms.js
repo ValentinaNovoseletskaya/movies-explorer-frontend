@@ -1,25 +1,9 @@
-// import {useState} from 'react';
 import './SavedFilms.css';
 import film1 from '../../images/film1.jpg';
 import film2 from '../../images/film2.jpg';
 import film3 from '../../images/film3.jpg';
 
 function SavedFilms() {
-//   const [formValue] = useState({
-//     email: '',
-//     password: ''
-//   })
-
-//   function handleSubmit(e) {
-//     e.preventDefault();
-//     if (!formValue.email || !formValue.password){
-//       return;
-//     }
-//     onLogIn({
-//         email: formValue.email,
-//         password: formValue.password,
-//     });
-//   }
 
     return (         
         <section className="films">

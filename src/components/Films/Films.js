@@ -1,4 +1,4 @@
-// import {useState} from 'react';
+
 import './Films.css';
 import film1 from '../../images/film1.jpg';
 import film2 from '../../images/film2.jpg';
@@ -18,21 +18,7 @@ import film15 from '../../images/film15.jpg';
 import film16 from '../../images/film16.jpg';
 
 function Films() {
-//   const [formValue] = useState({
-//     email: '',
-//     password: ''
-//   })
- 
-//   function handleSubmit(e) {
-//     e.preventDefault();
-//     if (!formValue.email || !formValue.password){
-//       return;
-//     }
-//     onLogIn({
-//         email: formValue.email,
-//         password: formValue.password,
-//     });
-//   }
+
 
     return (
         <section className="films">
