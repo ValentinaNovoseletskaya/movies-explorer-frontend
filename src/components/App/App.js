@@ -8,7 +8,6 @@ import Signup from '../Signup/Signup';
 import Login from '../Login/Login';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import Profile from '../Profile/Profile';
-import Search from '../Search/Search';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Popup from '../Popup/Popup';
