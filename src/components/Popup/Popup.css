@@ -76,7 +76,7 @@
     }
 }
 
-.popup__films {    
+.popup__movies {    
     text-decoration: none;
     color: #FFF;
     font-size: 18px;
@@ -84,9 +84,12 @@
     font-weight: 500;
 }
 
-.popup__films:hover {
-    opacity: 80%;
-    text-decoration: underline;
+.popup__movies:hover {
+    opacity: 70%;
+}
+
+.popup__movies_active {
+    text-decoration: underline;        
     text-underline-offset: 6px;
     text-decoration-thickness: 2px;
 }
@@ -100,13 +103,16 @@
 }
 
 .popup__main:hover {
-    opacity: 80%;
-    text-decoration: underline;
+    opacity: 70%;
+}
+
+.popup__main_active {
+    text-decoration: underline;        
     text-underline-offset: 6px;
     text-decoration-thickness: 2px;
 }
 
-.popup__saved-films {    
+.popup__saved-movies {    
     text-decoration: none;
     color: #FFF;
     font-size: 18px;
@@ -114,9 +120,12 @@
     font-weight: 500;
 }
 
-.popup__saved-films:hover {
-    opacity: 80%;
-    text-decoration: underline;
+.popup__saved-movies:hover {
+    opacity: 70%;
+}
+
+.popup__saved-movies_active {
+    text-decoration: underline;        
     text-underline-offset: 6px;
     text-decoration-thickness: 2px;
 }

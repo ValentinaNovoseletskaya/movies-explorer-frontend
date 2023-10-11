@@ -3,7 +3,7 @@
     position: relative;
     justify-content: space-between;
     background-color: #073042;
-    padding: 73px 70px;
+    padding: 75px 70px;
 }
 
 @media (max-width: 1000px) {
@@ -11,14 +11,14 @@
         flex-direction: column-reverse;
         gap: 48px;
         align-items: center;
-        padding: 139px 70px 77px;
+        padding: 139px 50px 77px;
     }
 }
 
 @media (max-width: 550px) {
     .promo {
         gap: 44px;
-        padding: 68px 30px 30px;
+        padding: 68px 10px 30px;
     }
 }
 
@@ -35,7 +35,7 @@
         font-size: 40px;
         line-height: 50px;
         text-align: center;
-        max-width: 680px;
+        max-width: 750px;
     }
 }
 
@@ -63,7 +63,7 @@
 .promo__text {
     margin: 36px 0 146px;
     font-size: 13px;
-    line-height: 15.73px;
+    line-height: 16.73px;
     font-weight: 400;
     max-width: 310px;
     opacity: 50%;

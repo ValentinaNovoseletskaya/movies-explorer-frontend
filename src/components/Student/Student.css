@@ -11,7 +11,7 @@
 
 @media (max-width: 550px) {
     .student {
-        padding: 90px 15px 98px;
+        padding: 90px 15px 74px;
     }
 }
 
@@ -77,7 +77,7 @@
 }
 
 .student__info {
-    max-width: 550px;
+    max-width: 590px;
 }
 
 @media (max-width: 900px) {
@@ -131,13 +131,25 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 16.94px;
-    margin: 99px 0 0;
+    margin: 88px 0 0;
     text-decoration: none;
     cursor: pointer;
 }
 
 .student__link:hover {
     opacity: 70%;
+}
+
+@media (max-width: 800px) {
+    .student__link {
+        margin: 78px 0 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .student__link {
+        margin: 30px 0 0;
+    }
 }
 
 .student__photo {

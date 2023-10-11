@@ -7,19 +7,19 @@ function Navigation({isMainPage, handleMenuClick}) {
             {isMainPage ?
            <Routes>
                 <Route path="/" element={
-                    <div className="navigation__container">
+                    <nav className="navigation__container">
                         <Link to="/signup" className="navigation__link">Регистрация</Link>
                         <Link to="/signin" className="navigation__button">Войти</Link>
-                    </div>       
+                    </nav>       
                 }>
                 </Route>                
             </Routes>
             :
             <>
-                <div className="navigation__films">
+                <nav className="navigation__movies">
                     <Link to="/movies" className="navigation__link">Фильмы</Link>
                     <Link to="/saved-movies" className="navigation__link">Сохраненные фильмы</Link>
-                </div>
+                </nav>
                 <div className="navigation__profile">
                     <Link to="/profile" className="navigation__link">Аккаунт
                     <div className="navigation__profile-button"></div></Link>

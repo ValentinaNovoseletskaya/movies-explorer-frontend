@@ -48,6 +48,10 @@
     margin: 12px 0;
 }
 
+.footer__link:hover {
+    opacity: 70%;
+}
+
 @media (max-width: 450px) {
     .footer__links {
         flex-direction: column;

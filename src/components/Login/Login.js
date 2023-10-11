@@ -2,46 +2,46 @@ import './Login.css';
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
 import logo from '../../images/logo.png';
+import {inputLogin} from '../../utils/formsConfig.js';
 
-function Login({onLogIn}) {
-  const [formValue, setFormValue] = useState({
-    email: '',
-    password: ''
-  })
- 
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (!formValue.email || !formValue.password){
-      return;
-    }
-    onLogIn({
-        email: formValue.email,
-        password: formValue.password,
-    });
-  }
+function Login() {
+  const [formData, setFormData] = useState({});
+  const [formErrors, setFormErrors] = useState({});  
 
     return (
-        <main className="sign">
+        <main className="login">
           <Link to="/"><img className="login__logo" src={logo} alt="Логотип" /></Link>
-          <p className="sign__welcome">Рады видеть!</p>
-          <form className="sign__form" onSubmit={handleSubmit}>
-            <fieldset className="sign__inputs">
-              <label className="sign__input-name">E-mail</label>
-              <input className="sign__input" id="email" name="email" type="email" placeholder="" value={formValue.email || '' }
-              onChange={ e=>{
-              setFormValue({...formValue, email: e.target.value})
-              } } />
-              <label className="sign__input-name">Пароль</label>
-              <input className="sign__input" id="password" name="password" type="password" placeholder="" value={formValue.password || '' }
-              onChange={ e=>{
-              setFormValue({...formValue, password: e.target.value})
-              } } />
+          <h2 className="login__welcome">Рады видеть!</h2>
+          <form className="login__form">
+            <fieldset className="login__inputs">
+            {inputLogin.map( ({labelclassName, type, required, name, className, placeholder, minLength, maxLength}) => {
+              return  <div key={name}>
+                <label className={labelclassName}>{placeholder}</label>
+                <input 
+                  className={className}
+                  id={name}
+                  name={name}
+                  type={type}
+                  placeholder=""
+                  required={required}
+                  minLength={minLength}
+                  maxLength={maxLength}
+                  value={formData[name] || '' }
+                  onChange={ e=>{
+                    setFormData({...formData, [name]: e.target.value})
+                    const errorMessage = e.target.validationMessage
+                    setFormErrors({...formErrors, [name]: errorMessage || ''})
+                  } }
+                /> 
+                <span className="login__error" >{formErrors[name]}</span>
+              </div>
+            })} 
             </fieldset>
-              <button type="submit" className='save-button sign__button'>Войти</button>
+            <button type="submit" className='login__button'>Войти</button>
           </form>      
-          <div className="sign__login">
-              <p className="sign__login-text">Еще не зарегистрированы?&nbsp;</p>
-              <Link to="/signup" className="sign__link">Регистрация</Link>
+          <div className="login__signup">
+              <p className="login__signup-text">Еще не зарегистрированы?&nbsp;</p>
+              <Link to="/signup" className="login__link">Регистрация</Link>
           </div>
         </main>
     );

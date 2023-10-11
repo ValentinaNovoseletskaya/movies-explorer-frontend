@@ -75,5 +75,6 @@
     .page-error__link {
         font-size: 12px;
         line-height: 14.52px;
+        padding-bottom: 0;
     }
 }

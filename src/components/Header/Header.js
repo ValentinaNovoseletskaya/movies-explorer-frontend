@@ -8,7 +8,7 @@ function Header({handleMenuClick}) {
     const isMainPage = location.pathname === "/";
     return (
         <>          
-            <header className={`navigation ${ isMainPage ? "navigation_main" : "" }`}>
+            <header className={`header navigation ${ isMainPage ? "navigation_main" : "" }`}>
                 <Link to="/"><img className="header__logo" src={logo} alt="Логотип" /></Link>                
                 <Navigation isMainPage={isMainPage} handleMenuClick={handleMenuClick}/>         
             </header>

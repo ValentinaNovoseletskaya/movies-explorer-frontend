@@ -9,7 +9,6 @@ function Footer() {
                 <div className="footer__links">
                     <Link className="footer__link" target="_blank" to="https://practicum.yandex.ru/" >Яндекс.Практикум</Link>
                     <Link className="footer__link" target="_blank" to="https://github.com/ValentinaNovoseletskaya" >Github</Link>
-                    
                 </div>
             </div>
         </footer>          

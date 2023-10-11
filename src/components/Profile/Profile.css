@@ -80,7 +80,7 @@
         margin: 0;
     }
 
-    .profile__button {
+    .profile__edit-button {
         background-color: transparent;
         border: none;
         color: #FFF;
@@ -91,19 +91,18 @@
         cursor: pointer;
     }
     
-    
-    .profile__button:hover {
+    .profile__edit-button:hover {
         opacity: 80%;
     }
     
     @media (max-width: 1024px) {
-        .profile__button {
+        .profile__edit-button {
             margin: 194px auto 0;
         }
     }
     
     @media (max-width: 540px) {
-        .profile__button {
+        .profile__edit-button {
             margin: 362px auto 0;
             font-size: 12px;
             line-height: 14.73px;
@@ -127,4 +126,38 @@
             font-size: 12px;
             line-height: 14.73px;
         }
+    }
+
+    .profile__save-button {
+        background-color:#4285F4;
+        text-decoration: none;
+        border: none;
+        border-radius: 3px;
+        color: #FFF;
+        text-align: center;
+        cursor: pointer;
+        font-style: normal;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 16.94px;
+        padding: 13px 126px 15px 124px;
+        width: 100%;
+        margin-top: 223px;
+    }
+    
+    .profile__save-button:hover {
+        opacity: 80%;
+    }
+
+    @media (max-width: 550px) {
+        .profile__save-button {
+            font-size: 12px;
+            line-height: 14.94px;
+            padding: 16px 0 15px;
+        }
+    }
+
+    .profile__save-button_inactive {
+        background-color: #F8F8F8;
+        color: #C2C2C2;
     }

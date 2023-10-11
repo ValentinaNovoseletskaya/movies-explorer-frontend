@@ -1,16 +1,20 @@
-.login__logo {
+.signup__logo {
     display: block;
     width: 38px;
     height: 38px;
 }
 
+.signup__logo:hover {
+    opacity: 80%;
+}
+
 @media (max-width: 450px) {
-    .login__logo {
+    .signup__logo {
         margin: 0 auto;
     }
 }
 
-.sign {
+.signup {
     margin: 0 auto;
     padding: 68px 0;
     justify-items: center;
@@ -18,19 +22,19 @@
 }
 
 @media (max-width: 1024px) {
-    .sign {
+    .signup {
         padding: 230px 0;
     }
 }
 
 @media (max-width: 450px) {
-    .sign {
+    .signup {
         padding: 56px 30px;
         width: 260px;
     }
 }
 
-.sign__welcome {
+.signup__welcome {
     font-size: 24px;
     line-height: 29.05px;
     font-weight: 500;
@@ -38,20 +42,20 @@
 }
 
 @media (max-width: 1024px) {
-    .sign__welcome {
+    .signup__welcome {
         margin: 40px 0 22px;
     }
 }
 
 @media (max-width: 450px) {
-    .sign__welcome {
+    .signup__welcome {
         text-align: center;
         margin: 52px 0 62px;
         line-height: 25.05px;
     }
 }
 
-.sign__form {
+.signup__form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -60,12 +64,12 @@
 }
 
 @media (max-width: 450px) {
-    .sign__form {
+    .signup__form {
         min-height: 490px;
     }
 }
 
-.sign__button {
+.signup__button {
     background-color:#4285F4;
     text-decoration: none;
     border: none;
@@ -81,19 +85,19 @@
     width: 100%;
 }
 
-.sign__button:hover {
+.signup__button:hover {
     opacity: 80%;
 }
 
 @media (max-width: 450px) {
-    .sign__button {
+    .signup__button {
         font-size: 12px;
         line-height: 14.94px;
         padding: 16px 0 15px;
     }
 }
 
-.sign__input {
+.signup__input {
     border: none;
     background-color: #2F2F2F;
     color: #FFF;
@@ -109,12 +113,12 @@
 }
 
 @media (max-width: 450px) {
-    .sign__input {
+    .signup__input {
         width: 230px;
     }
 }
 
-.sign__input-name {
+.signup__input-name {
     display: block;
     color: #8B8B8B;
     font-size: 10px;
@@ -123,13 +127,13 @@
     margin: 20px 0 10px;
 }
 
-.sign__inputs {
+.signup__inputs {
     border: none;
     padding: 0;
     margin: 0;
 }
 
-.sign__login {
+.signup__login {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -142,23 +146,30 @@
     gap: 6px;
 }
 
-.sign__link {
+.signup__link {
     color: #4285F4;
     text-decoration: none;
 }
 
-.sign__link:hover {
+.signup__link:hover {
     opacity: 70%;
 }
 
 @media (max-width: 450px) {
-    .sign__link {
+    .signup__link {
         font-size: 12px;
     }
 }
 
 @media (max-width: 450px) {
-    .sign__login-text {
+    .signup__login-text {
         font-size: 12px;
     }
+}
+
+.signup__error {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12.1px;
+    color: #EE3465;
 }

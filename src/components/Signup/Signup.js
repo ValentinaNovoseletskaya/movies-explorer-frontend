@@ -2,51 +2,46 @@ import './Signup.css';
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import logo from '../../images/logo.png';
+import {inputSignup} from '../../utils/formsConfig.js';
 
-function Signup({onSignup}) {
-  const [formValue, setFormValue] = useState({
-    email: '',
-    password: ''
-  })
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (!formValue.email || !formValue.password){
-      return;
-    }
-    onSignup({
-      email: formValue.email,
-      password: formValue.password,
-    });
-  }
-
+function Signup() {
+  const [formData, setFormData] = useState({});
+  const [formErrors, setFormErrors] = useState({});  
+ 
   return (
-    <main className="sign">
-      <Link to="/"><img className="logo" src={logo} alt="Логотип" /></Link>
-      <p className="sign__welcome">Добро пожаловать!</p>
-      <form className="sign__form" onSubmit={handleSubmit}>
-        <fieldset className="sign__inputs">
-          <label className="sign__input-name">Имя</label>
-          <input className="sign__input" id="name" name="name" type="name" placeholder="" value={formValue.name || '' }
-          onChange={ e=>{
-            setFormValue({...formValue, name: e.target.value})
-          } } />
-          <label className="sign__input-name">E-mail</label>
-          <input className="sign__input" id="email" name="email" type="email" placeholder="" value={formValue.email || '' }
-          onChange={ e=>{
-            setFormValue({...formValue, email: e.target.value})
-          } } />
-          <label className="sign__input-name">Пароль</label>
-          <input className="sign__input" id="password" name="password" type="password" placeholder="" value={formValue.password || '' }
-          onChange={ e=>{
-            setFormValue({...formValue, password: e.target.value})
-          } } />
+    <main className="signup">
+      <Link to="/"><img className="signup__logo" src={logo} alt="Логотип" /></Link>
+      <h2 className="signup__welcome">Добро пожаловать!</h2>
+      <form className="signup__form"  >
+        <fieldset className="signup__inputs">
+        {inputSignup.map( ({labelclassName, type, required, name, className, placeholder, minLength, maxLength}) => {
+          return  <div key={name}>
+            <label className={labelclassName}>{placeholder}</label>
+            <input 
+              className={className}
+              id={name}
+              name={name}
+              type={type}
+              placeholder=""
+              required={required}
+              minLength={minLength}
+              maxLength={maxLength}
+              value={formData[name] || '' }
+              onChange={ e=>{
+                setFormData({...formData, [name]: e.target.value})
+                const errorMessage = e.target.validationMessage
+                setFormErrors({...formErrors, [name]: errorMessage || ''})
+              } }
+            /> 
+            <span className="signup__error" >{formErrors[name]}</span>
+          </div>
+        })} 
         </fieldset>
-        <button type="submit" className='save-button sign__button'>Зарегистрироваться</button>
+        <button type="submit" className='signup__save-button signup__button'>Зарегистрироваться</button>
       </form>      
-      <div className="sign__login">
-        <p className="sign__login-text">Уже зарегистрированы?&nbsp;</p>
-        <Link to="/signin" className="sign__link">Войти</Link>
+      <div className="signup__login">
+        <p className="signup__login-text">Уже зарегистрированы?&nbsp;</p>
+        <Link to="/signin" className="signup__link">Войти</Link>
       </div>
     </main>
   );

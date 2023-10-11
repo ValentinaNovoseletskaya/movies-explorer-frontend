@@ -33,8 +33,7 @@ function App() {
 
     return (
         <div className="body">
-            <div className="page">
-                
+            <div className="page">                
                 <Routes>
                     <Route path="/" element={
                         <><Header handleMenuClick={handleMenuClick}/><Main /><Footer /></>

@@ -4,6 +4,10 @@
     height: 38px;
 }
 
+.header__logo:hover {
+    opacity: 80%;
+}
+
 @media (max-width: 450px) {
     .header__logo {
         margin: 0 auto;
