@@ -1,7 +1,7 @@
 import './Login.css';
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
-import logo from '../../images/logo.png';
+import logo from '../../images/logo.svg';
 import {inputLogin} from '../../utils/formsConfig.js';
 
 function Login() {

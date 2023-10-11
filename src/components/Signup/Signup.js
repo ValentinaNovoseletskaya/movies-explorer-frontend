@@ -1,7 +1,7 @@
 import './Signup.css';
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import logo from '../../images/logo.png';
+import logo from '../../images/logo.svg';
 import {inputSignup} from '../../utils/formsConfig.js';
 
 function Signup() {

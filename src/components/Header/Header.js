@@ -1,5 +1,5 @@
 import './Header.css';
-import logo from '../../images/logo.png';
+import logo from '../../images/logo.svg';
 import { Link, useLocation } from "react-router-dom";
 import Navigation from '../Navigation/Navigation';
 

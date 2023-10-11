@@ -41,7 +41,7 @@
 }
 
 .search__button {
-    background: url("../../images/find.png") no-repeat 0 0;
+    background: url("../../images/find.svg") no-repeat 0 0;
     border: 0;
     width: 34px;
     height: 34px;
@@ -76,7 +76,7 @@
 .search__shorts-button {
     display: block;
     appearance: none;
-    background: url("../../images/smalltumboff.png") no-repeat 0 0;
+    background: url("../../images/smalltumboff.svg") no-repeat 0 0;
     border: 0;
     width: 36px;
     height: 20px;
@@ -84,7 +84,7 @@
 }
 
 .search__shorts-button:checked {
-    background: url("../../images/smalltumb.png");
+    background: url("../../images/smalltumb.svg");
 }
 
 .search__shorts-text {
