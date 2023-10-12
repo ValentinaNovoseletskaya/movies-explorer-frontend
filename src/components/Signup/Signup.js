@@ -22,7 +22,7 @@ function Signup() {
               id={name}
               name={name}
               type={type}
-              placeholder=""
+              placeholder={placeholder}
               required={required}
               minLength={minLength}
               maxLength={maxLength}

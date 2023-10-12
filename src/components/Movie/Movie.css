@@ -10,7 +10,7 @@
     min-height: 218px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1022px) {
     .movie {
         min-height: 257px;
     }
@@ -37,7 +37,7 @@
     max-height: 151px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1022px) {
     .movie__image {
         min-height: 190px;
     }

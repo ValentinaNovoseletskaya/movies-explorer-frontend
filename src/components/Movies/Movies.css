@@ -4,7 +4,7 @@
     min-height: 310px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1022px) {
     .movies {
         padding: 20px 30px 78px;
         min-height: 643px;
@@ -25,15 +25,15 @@
     column-gap: 20px;
     row-gap: 32px;
     max-width: 1140px;
-    padding-bottom: 30px;
-    justify-content: center;
+    padding-bottom: 30px;    
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1022px) {
     .movies__container {
         grid-template-columns: repeat(auto-fit, minmax(339px, 339px));
         column-gap: 30px;
         row-gap: 36px;
+        justify-content: center;
     }
 }
 
