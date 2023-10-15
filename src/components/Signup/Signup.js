@@ -4,15 +4,27 @@ import {Link} from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import {inputSignup} from '../../utils/formsConfig.js';
 
-function Signup() {
+function Signup({onSignup}) {
   const [formData, setFormData] = useState({});
-  const [formErrors, setFormErrors] = useState({});  
- 
+  const [formErrors, setFormErrors] = useState({});
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!formData.email || !formData.password){
+      return;
+    }
+    onSignup({
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+    });
+  }
+
   return (
     <main className="signup">
       <Link to="/"><img className="signup__logo" src={logo} alt="Логотип" /></Link>
       <h2 className="signup__welcome">Добро пожаловать!</h2>
-      <form className="signup__form"  >
+      <form className="signup__form" onSubmit={handleSubmit} >
         <fieldset className="signup__inputs">
         {inputSignup.map( ({labelclassName, type, required, name, className, placeholder, minLength, maxLength}) => {
           return  <div key={name}>

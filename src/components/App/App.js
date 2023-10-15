@@ -130,7 +130,8 @@ function App() {
     function handleLoggedOut() {        
         setUseLoggedInToken(false);
         localStorage.removeItem('token');
-        navigate('/signin');
+        setCurrentUser(null);
+        navigate('/');
     } 
 
     return (
@@ -141,10 +142,10 @@ function App() {
                     <Route path="/" element={
                         <><Header handleMenuClick={handleMenuClick}/><Main /><Footer /></>
                     } />
-                    <Route path="/signup" element={<Signup />} />
+                    <Route path="/signup" element={<Signup onSignup={handleSignupSubmit} />} />
                     <Route path="/signin" element={<Login onLogIn={handleLoginSubmit} />} />
                     <Route path="/profile" element={
-                        <><Header handleMenuClick={handleMenuClick}/><Profile user={currentUser} /></>
+                        <><Header handleMenuClick={handleMenuClick}/><Profile user={currentUser} onLogout={handleLoggedOut} onUpdate={handleUpdateUser}/></>
                     } />
                     <Route path="/movies" element={
                         <><Header handleMenuClick={handleMenuClick}/><Movies movies={moviesImages}/><Footer /></>

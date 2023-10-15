@@ -1,20 +1,22 @@
 import './Profile.css';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import {Link} from 'react-router-dom';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
-function Profile({user}) {
+function Profile({onLogout, onUpdate}) {
+  const currentUser = useContext(CurrentUserContext);
   const [isEditProfile, setIsEditProfile] = useState(false);
-  const [formValue, setFormValue] = useState({
-    name: user.name,
-    email: user.email
+  const [formData, setFormData] = useState({
+    name: currentUser.name,
+    email: currentUser.email
   });
 
- useEffect(() => {
-  setFormValue({
-      name: user ? user.name : '',
-      email: user ? user.email : '',
-  }) 
-}, [user]);
+  useEffect(() => {
+    setFormData({
+      name: currentUser ? currentUser.name : '',
+      email: currentUser ? currentUser.email : '',
+    }) 
+  }, [currentUser]);
   
 
   function handleEditClick(e) {
@@ -25,24 +27,28 @@ function Profile({user}) {
   function handleSaveClick(e) {
     e.preventDefault();
     setIsEditProfile(false);
+    onUpdate({
+      name: formData.name,
+      email: formData.email,
+  });
   }
 
     return (
         <main className="profile">
-            <h2 className="profile__welcome">Привет, {user.name}!</h2>
+            <h2 className="profile__welcome">Привет, {currentUser.name}!</h2>
             <form className="profile__form">
                 <div className="profile__name  profile__name_underlined">
                     <label className="profile__input-name">Имя</label>
-                    <input className="profile__input" id="name" name="name" type="text" placeholder="Имя" value={formValue.name || '' }
+                    <input className="profile__input" id="name" name="name" type="text" placeholder="Имя" value={formData.name || '' }
                     onChange={ e=>{
-                        setFormValue({...formValue, name: e.target.value})
+                        setFormData({...formData, name: e.target.value})
                     } } />
                 </div>
                 <div className="profile__name">
                     <label className="profile__input-name">E-mail</label>
-                    <input className="profile__input" id="email" name="email" type="email" placeholder="E-mail" value={formValue.email || '' }
+                    <input className="profile__input" id="email" name="email" type="email" placeholder="E-mail" value={formData.email || '' }
                     onChange={ e=>{
-                    setFormValue({...formValue, email: e.target.value})
+                    setFormData({...formData, email: e.target.value})
                     } } />
                 </div>
                 { isEditProfile ? 
@@ -51,7 +57,7 @@ function Profile({user}) {
                   <button type="submit" className='profile__edit-button' onClick={handleEditClick}>Редактировать</button>
                 }
             </form>
-            { !isEditProfile && <Link to="/" className="profile__link">Выйти из аккаунта</Link> }
+            { !isEditProfile && <Link to="/" className="profile__link" onClick={onLogout}>Выйти из аккаунта</Link> }
         </main>
     );
 }
