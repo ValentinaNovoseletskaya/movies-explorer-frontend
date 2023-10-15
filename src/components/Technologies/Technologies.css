@@ -1,0 +1,120 @@
+
+.technologies {
+    background-color: #272727;
+    padding: 100px 70px;
+}
+
+@media (max-width: 1024px) {
+    .technologies {
+        padding: 90px 50px;
+    }
+}
+
+@media (max-width: 660px) {
+    .technologies {
+        padding: 50px 18px;
+        background-color: #202020;
+    }
+}
+
+.technologies__title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    margin: 90px 0 26px;
+    text-align: center;
+    letter-spacing: -0.04em;
+}
+
+@media (max-width: 1024px) {
+    .technologies__title {
+        margin: 80px 0 21px;
+    }
+}
+
+@media (max-width: 660px) {
+    .technologies__title {
+        margin: 59px 0 22px;
+        font-size: 30px;
+        line-height: 38px;
+    }
+}
+
+.technologies__text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0 auto;
+    max-width: 460px;
+    text-align: center;
+    letter-spacing: -0.04em;
+}
+
+@media (max-width: 1024px) {
+    .technologies__text {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+@media (max-width: 660px) {
+    .technologies__text {
+        font-size: 11px;
+        line-height: 17px;
+    }
+}
+
+.technologies__elements {
+    margin: 100px auto 0;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding-inline: unset;
+    justify-content: center;
+    gap: 10px;
+    max-width: 690px;
+}
+
+@media (max-width: 1024px) {
+    .technologies__elements {
+        margin: 85px auto 0;
+    }
+}
+
+@media (max-width: 680px) {
+    .technologies__elements { 
+        gap: 4px;
+    }
+}
+
+
+@media (max-width: 640px) {
+    .technologies__elements {
+        display: grid;
+        grid-template-columns: 84px 84px;
+        margin: 48px auto 0;
+        gap: 10px;
+    }
+}
+
+.technologies__element {
+    margin: 0;
+    min-width: 90px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
+    background-color: #303030;
+    border-radius: 10px;
+    text-align: center;
+    padding: 21px 0 22px;
+}
+
+@media (max-width: 1024px) {
+    .technologies__element {
+        min-width: 84px;
+        font-size: 12px;
+        line-height: 13.94px;
+    }
+}

@@ -1,0 +1,11 @@
+.body {
+    background-color: #202020;
+    font-family: 'Inter', Arial, sans-serif;
+    min-height: 100vh;
+}
+
+.page {
+    color: #FFF;
+    margin: auto;
+    max-width: 1280px;
+}
