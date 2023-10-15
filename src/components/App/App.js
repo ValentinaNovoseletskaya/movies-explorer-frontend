@@ -1,5 +1,8 @@
+import {mainApi} from '../../utils/MainApi.js';
+import {movieApi} from '../../utils/MovieApi.js';
 import {useEffect, useState} from 'react';
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import {CurrentUserContext} from '../../contexts/CurrentUserContext.js';
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -14,13 +17,40 @@ import Popup from '../Popup/Popup';
 import {userData} from '../../utils/userData'
 import {moviesImages} from '../../utils/moviesImages';
 
-function App() { 
+function App() {
+    const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [currentUser, setCurrentUser] = useState('');
- 
+    const [useLoggedInToken, setUseLoggedInToken] = useState(false);
+    const [movies, setMovies] = useState([]);
+    const [savedMovies, setSavedMovies] = useState([]);
+    const [isAuthFail, setIsAuthFail] = useState(false);
 
     useEffect(() => {
-        setCurrentUser(userData);
+        if(useLoggedInToken) {
+         mainApi.getUserInfo()
+             .then((userData) => {
+                 setCurrentUser(userData);
+             })
+             .catch((err) => {
+                 console.log(err);
+             });
+         }
+     }, [useLoggedInToken]);
+
+     useEffect(() => {
+        const token = localStorage.getItem('token') 
+        if (token) {
+            mainApi.getUserInfo()
+            .then((data) => {
+                setUseLoggedInToken(true);
+                navigate('/movies');
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        }
+        // eslint-disable-next-line
      }, []);
 
     function handleMenuClick() {
@@ -31,7 +61,80 @@ function App() {
         setIsMenuOpen(false);
     }
 
+    function handleSubmit(request) {
+        request()
+            .then(() => {
+                // closeAllPopups();закрыть прелоудер
+            })
+            .catch((err) => {
+                console.error(`Ошибка: ${err}`);
+            })
+            .finally(() => {
+                // setIsLoadingPlacePopup(false);
+                // setIsLoadingProfilePopup(false);
+                // setIsLoadingAvatarPopup(false);
+            });
+    }
+
+    function handleAddMovie(movie) {        
+        function makeRequest() { 
+            return mainApi.addMovie(movie).then((newMovie) => {
+                setSavedMovies([newMovie, ...movies]);
+            });
+        }
+        handleSubmit(makeRequest);
+    }
+
+    function handleDeleteMovie(movie) {
+        function makeRequest() {
+            return mainApi.removeMovie(movie._id).then(() => {
+                const newMovies = savedMovies.filter(m => m._id !== movie._id);
+                setSavedMovies(newMovies);
+            });
+        }
+        handleSubmit(makeRequest);
+    }
+
+    function handleUpdateUser(user) {
+        function makeRequest() { 
+            return mainApi.editUserInfo(user).then((userData) => {
+                setCurrentUser(userData);
+            });
+        }
+        handleSubmit(makeRequest);
+    }
+
+    function handleLoginSubmit(formData) {
+        mainApi.signin(formData)
+            .then((data) => {
+              setUseLoggedInToken(true);
+              localStorage.setItem('token', data.token);
+              navigate('/movies');
+            }).catch((err) => {
+                console.log(err);
+                setIsAuthFail(true);
+            });
+    }
+
+    function handleSignupSubmit(formData) {        
+        mainApi.signup(formData)
+            .then(() => {
+                setUseLoggedInToken(true);
+                navigate('/movies');
+            }).catch((err) => {
+                console.log(err);
+                setIsAuthFail(true);
+            });
+    }
+
+    function handleLoggedOut() {        
+        setUseLoggedInToken(false);
+        localStorage.removeItem('token');
+        navigate('/signin');
+    } 
+
     return (
+        <CurrentUserContext.Provider value={currentUser}>
         <div className="body">
             <div className="page">                
                 <Routes>
@@ -39,7 +142,7 @@ function App() {
                         <><Header handleMenuClick={handleMenuClick}/><Main /><Footer /></>
                     } />
                     <Route path="/signup" element={<Signup />} />
-                    <Route path="/signin" element={<Login />} />
+                    <Route path="/signin" element={<Login onLogIn={handleLoginSubmit} />} />
                     <Route path="/profile" element={
                         <><Header handleMenuClick={handleMenuClick}/><Profile user={currentUser} /></>
                     } />
@@ -54,6 +157,7 @@ function App() {
             </div>
             <Popup isMenuOpen={isMenuOpen} handleCloseMenuClick={handleCloseMenuClick}/>
         </div>
+        </CurrentUserContext.Provider>
     );
 }
 

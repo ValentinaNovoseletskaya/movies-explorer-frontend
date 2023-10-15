@@ -4,15 +4,26 @@ import {Link} from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import {inputLogin} from '../../utils/formsConfig.js';
 
-function Login() {
+function Login({onLogIn}) {
   const [formData, setFormData] = useState({});
   const [formErrors, setFormErrors] = useState({});  
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!formData.email || !formData.password){
+      return;
+    }
+    onLogIn({
+        email: formData.email,
+        password: formData.password,
+    });
+  }
 
     return (
         <main className="login">
           <Link to="/"><img className="login__logo" src={logo} alt="Логотип" /></Link>
           <h2 className="login__welcome">Рады видеть!</h2>
-          <form className="login__form">
+          <form className="login__form" onSubmit={handleSubmit}>
             <fieldset className="login__inputs">
             {inputLogin.map( ({labelclassName, type, required, name, className, placeholder, minLength, maxLength}) => {
               return  <div key={name}>
