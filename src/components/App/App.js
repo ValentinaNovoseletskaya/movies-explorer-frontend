@@ -24,6 +24,7 @@ function App() {
     const [useLoggedInToken, setUseLoggedInToken] = useState(false);
     const [movies, setMovies] = useState([]);
     const [savedMovies, setSavedMovies] = useState([]);
+    const [searchHistory, setSearchHistory] = useState(null);
     const [isAuthFail, setIsAuthFail] = useState(false);
 
     useEffect(() => {
@@ -37,6 +38,13 @@ function App() {
              });
          }
      }, [useLoggedInToken]);
+
+     useEffect(() => {
+        const searchHistory = localStorage.getItem('searchHistory') 
+        if (searchHistory) {
+            setSearchHistory(searchHistory);
+        }
+     }, []);
 
      useEffect(() => {
         const token = localStorage.getItem('token') 
@@ -182,7 +190,7 @@ function App() {
                         <><Header handleMenuClick={handleMenuClick}/><Profile user={currentUser} onLogout={handleLoggedOut} onUpdate={handleUpdateUser}/></>
                     } />
                     <Route path="/movies" element={
-                        <><Header handleMenuClick={handleMenuClick}/><Movies movies={movies} handleGetMovies={handleGetMovies}/><Footer /></>
+                        <><Header handleMenuClick={handleMenuClick}/><Movies movies={movies} setMovies={setMovies} searchHistory={searchHistory} handleGetMovies={handleGetMovies} /><Footer /></>
                     } />
                     <Route path="/saved-movies" element={
                         <><Header handleMenuClick={handleMenuClick}/><SavedMovies movies={moviesImages} handleGetSavedMovies={handleGetSavedMovies}/><Footer /></>
