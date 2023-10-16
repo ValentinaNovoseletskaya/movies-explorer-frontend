@@ -76,6 +76,40 @@ function App() {
             });
     }
 
+    function handleGetMovies() {
+        function makeRequest() {
+            return movieApi.getMovies().then((movies) => {
+                const newMovies = [];
+                    movies.forEach(movie => {
+                        newMovies.push({
+                            movieId: movie.id,
+                            nameRU: movie.nameRU,
+                            nameEN: movie.nameEN,
+                            country: movie.country,
+                            director: movie.director,
+                            duration: movie.duration,
+                            year: movie.year,
+                            description: movie.description,
+                            image: movie.image.url,
+                            trailerLink: movie.trailerLink,
+                            thumbnail: movie.image.formats.thumbnail.url, 
+                        })
+                    }); 
+                setMovies(newMovies);
+            });
+        }
+        handleSubmit(makeRequest);
+    }
+
+    function handleGetSavedMovies() {        
+        function makeRequest() { 
+            return mainApi.getSavedMovie().then((savedMovie) => {
+                setSavedMovies(savedMovie);
+            });
+        }
+        handleSubmit(makeRequest);
+    }
+
     function handleAddMovie(movie) {        
         function makeRequest() { 
             return mainApi.addMovie(movie).then((newMovie) => {
@@ -148,10 +182,10 @@ function App() {
                         <><Header handleMenuClick={handleMenuClick}/><Profile user={currentUser} onLogout={handleLoggedOut} onUpdate={handleUpdateUser}/></>
                     } />
                     <Route path="/movies" element={
-                        <><Header handleMenuClick={handleMenuClick}/><Movies movies={moviesImages}/><Footer /></>
+                        <><Header handleMenuClick={handleMenuClick}/><Movies movies={movies} handleGetMovies={handleGetMovies}/><Footer /></>
                     } />
                     <Route path="/saved-movies" element={
-                        <><Header handleMenuClick={handleMenuClick}/><SavedMovies movies={moviesImages} /><Footer /></>
+                        <><Header handleMenuClick={handleMenuClick}/><SavedMovies movies={moviesImages} handleGetSavedMovies={handleGetSavedMovies}/><Footer /></>
                     } />
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>

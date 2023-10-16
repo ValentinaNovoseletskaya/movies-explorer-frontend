@@ -18,7 +18,6 @@ class MovieApi {
 
     getMovies() {
       return this._request(`${this._baseUrl}/beatfilm-movies`, {
-        credentials: 'include',
         headers: this._headers
       });
     }

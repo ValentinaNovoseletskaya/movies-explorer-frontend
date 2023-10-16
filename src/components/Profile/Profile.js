@@ -30,7 +30,7 @@ function Profile({onLogout, onUpdate}) {
     onUpdate({
       name: formData.name,
       email: formData.email,
-  });
+    });
   }
 
     return (

@@ -1,6 +1,6 @@
 import Movies from '../Movies/Movies';
 
-function SavedMovies({movies}) {
+function SavedMovies({movies, handleGetSavedMovies}) {
     const savedMovies = movies.slice(0, 3);
     return (          
             <Movies movies={savedMovies}/>  
