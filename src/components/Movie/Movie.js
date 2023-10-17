@@ -1,9 +1,9 @@
 import './Movie.css';
-import {useState, useRef} from 'react'; 
+import {useState} from 'react'; 
 import { useLocation } from "react-router-dom";
 
-function Movie({movie, isSaved}) {
-    const movieRef = useRef(null);
+function Movie({movieCardRef, movie, isSaved}) {
+    
     const location = useLocation();
     const isSavedPage = location.pathname === "/saved-movies";
     const [isLiked, setIsLiked] = useState(false);
@@ -11,11 +11,11 @@ function Movie({movie, isSaved}) {
         setIsLiked(!isLiked);
     };
     function handleDisLikeClick() {
-        movieRef.current.remove();
+        movieCardRef.current.remove();
     };
 
     return (
-        <div className="movie" ref={movieRef}  >
+        <div className="movie" ref={movieCardRef}  >
             <img className="movie__image" src={`https://api.nomoreparties.co${movie.thumbnail} `} alt="Обложка фильма"/>
             <div className="movie__title">
                 <h3 className="movie__text">{movie.nameRU}</h3>

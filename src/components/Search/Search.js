@@ -1,28 +1,18 @@
 import './Search.css';
 import {useState, useEffect} from 'react';
 
-function Search( {movies, setMovies, handleGetMovies, searchHistory}) {
+function Search({ handleInputChange, searchHistory }) {
 
   const [keyword, setKeyword] = useState(null);
   const [findShorts, setFindShorts] = useState(false);
-
-  useEffect(() => {
-    handleGetMovies();
- }, []);
-
-  function searchFilter(movieArray, keyword) {
  
-      return movieArray.filter((movieCard) => {
-        return movieCard.nameRU.toLowerCase().includes(keyword.toLowerCase().trim());
-      }); 
-  }
 
  
   function handleClickSearch(e){
     e.preventDefault();
     
     if (keyword) {
-      setMovies(searchFilter(movies, keyword)); 
+      handleInputChange(keyword); 
     
     }
     

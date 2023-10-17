@@ -25,6 +25,7 @@ function App() {
     const [movies, setMovies] = useState([]);
     const [savedMovies, setSavedMovies] = useState([]);
     const [searchHistory, setSearchHistory] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
     const [isAuthFail, setIsAuthFail] = useState(false);
 
     useEffect(() => {
@@ -39,14 +40,14 @@ function App() {
          }
      }, [useLoggedInToken]);
 
-     useEffect(() => {
+    useEffect(() => {
         const searchHistory = localStorage.getItem('searchHistory') 
         if (searchHistory) {
             setSearchHistory(searchHistory);
         }
-     }, []);
+    }, []);
 
-     useEffect(() => {
+    useEffect(() => {
         const token = localStorage.getItem('token') 
         if (token) {
             mainApi.getUserInfo()
@@ -59,7 +60,7 @@ function App() {
             });
         }
         // eslint-disable-next-line
-     }, []);
+    }, []);
 
     function handleMenuClick() {
         setIsMenuOpen(true);
@@ -78,15 +79,14 @@ function App() {
                 console.error(`Ошибка: ${err}`);
             })
             .finally(() => {
-                // setIsLoadingPlacePopup(false);
-                // setIsLoadingProfilePopup(false);
-                // setIsLoadingAvatarPopup(false);
+                // setIsLoading(false);
             });
     }
 
     function handleGetMovies() {
-        function makeRequest() {
-            return movieApi.getMovies().then((movies) => {
+        async function makeRequest() {
+            setIsLoading(true);
+            return await movieApi.getMovies().then((movies) => {
                 const newMovies = [];
                     movies.forEach(movie => {
                         newMovies.push({
@@ -104,6 +104,9 @@ function App() {
                         })
                     }); 
                 setMovies(newMovies);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
         }
         handleSubmit(makeRequest);
@@ -190,7 +193,7 @@ function App() {
                         <><Header handleMenuClick={handleMenuClick}/><Profile user={currentUser} onLogout={handleLoggedOut} onUpdate={handleUpdateUser}/></>
                     } />
                     <Route path="/movies" element={
-                        <><Header handleMenuClick={handleMenuClick}/><Movies movies={movies} setMovies={setMovies} searchHistory={searchHistory} handleGetMovies={handleGetMovies} /><Footer /></>
+                        <><Header handleMenuClick={handleMenuClick}/><Movies isLoading={isLoading} movies={movies} searchHistory={searchHistory} handleGetMovies={handleGetMovies} /><Footer /></>
                     } />
                     <Route path="/saved-movies" element={
                         <><Header handleMenuClick={handleMenuClick}/><SavedMovies movies={moviesImages} handleGetSavedMovies={handleGetSavedMovies}/><Footer /></>
