@@ -12,52 +12,48 @@ function Movies({isLoading, movies, searchHistory, handleGetMovies}) {
     const [keyword, setKeyword] = useState(null);
     const [searchResults, setSearchResults] = useState([]);
     const [error, setError] = useState(null);
-    const [visibleCards, setVisibleCards] = useState(4);
-    const [moviesInRow, setMoviesInRow] = useState(4);
+    const [visibleCards, setVisibleCards] = useState(0);
+    const [moviesInRow, setMoviesInRow] = useState(0);
     const moviesContainerRef = useRef({});
     const movieCardRef = useRef({});
 
-     
+    useEffect(() => {
+        let timeoutId;
+        const handleResize = () => { 
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                calculatePageRow();  
+            }, 200);
 
-
-    // useEffect(() => {
-    //     const handleResize = () => {
-    //         if (movieCardRef.current) {
-    //             const containerWidth = moviesContainerRef.current.offsetWidth;
-    //             const movieCardWidth = movieCardRef.current.offsetWidth;
-
-    //             const newMoviesInRow = Math.floor(containerWidth / (movieCardWidth + 20));
-    //             setMoviesInRow(newMoviesInRow);
- 
-                
-
-    //             if (window.innerWidth >= 480 ) { 
-    //                 const newVisibleCards = Number(visibleCards + moviesInRow);
-    //                 setVisibleCards(newVisibleCards)
-    //                 console.log(newVisibleCards)
-    //             } else if (window.innerWidth <= 480) {
-    //                 const newVisibleCards = Number(visibleCards + 2);
-    //                 setVisibleCards(newVisibleCards)
-    //                 console.log(newVisibleCards)
-    //             }
-                
-    //         } 
-    //     };
+        };
      
-    //     window.addEventListener('resize', handleResize);
-     
-    //     handleResize();
-     
-    //     return () => {
-    //       window.removeEventListener('resize', handleResize);
-    //     };
-    //   }, []);
+        window.addEventListener('resize', handleResize);
+        handleResize();
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            clearTimeout(timeoutId);
+          };
+      }, []);
 
     useEffect(() => {
         const results = searchFilter(movies, keyword); 
         setSearchResults(results);
+        calculatePageRow();
      }, [movies, keyword]);
      
+    function calculatePageRow() {
+
+        if (window.innerWidth >= 480 ) { 
+            const newMoviesInRow = Math.floor(window.innerWidth / 320) > 4 ? 4 : Math.floor(window.innerWidth / 320);
+            setMoviesInRow(newMoviesInRow);
+            const newVisibleCards = Number(newMoviesInRow*4);
+            setVisibleCards(newVisibleCards);
+        } else if (window.innerWidth <= 480) {
+            setMoviesInRow(2);
+            const newVisibleCards = 5;
+            setVisibleCards(newVisibleCards);
+        }
+    }
     function handleInputChange(keyword) {
        
         setError(null);
