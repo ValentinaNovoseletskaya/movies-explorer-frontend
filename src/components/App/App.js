@@ -175,6 +175,9 @@ function App() {
     function handleLoggedOut() {        
         setUseLoggedInToken(false);
         localStorage.removeItem('token');
+        localStorage.removeItem('searchText');
+        localStorage.removeItem('shortMovie');
+        localStorage.removeItem('searchResults');
         setCurrentUser(null);
         navigate('/');
     } 
