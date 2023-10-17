@@ -84,9 +84,9 @@ function App() {
     }
 
     function handleGetMovies() {
-        async function makeRequest() {
+        function makeRequest() {
             setIsLoading(true);
-            return await movieApi.getMovies().then((movies) => {
+            return movieApi.getMovies().then((movies) => {
                 const newMovies = [];
                     movies.forEach(movie => {
                         newMovies.push({

@@ -9,13 +9,27 @@ function Movies({isLoading, movies, searchHistory, handleGetMovies}) {
     const location = useLocation();
     const isSavedPage = location.pathname === "/saved-movies";
 
-    const [keyword, setKeyword] = useState(null);
+    const [keyword, setKeyword] = useState('');
+    const [isShortMovies, setIsShortMovies] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
     const [error, setError] = useState(null);
     const [visibleCards, setVisibleCards] = useState(0);
     const [moviesInRow, setMoviesInRow] = useState(0);
     const moviesContainerRef = useRef({});
     const movieCardRef = useRef({});
+
+    useEffect(() => {
+        const savedShortMovie = localStorage.getItem('shortMovie');
+        const savedSearchResults = JSON.parse(localStorage.getItem('searchResults'));
+        console.log(savedSearchResults);
+        if (savedShortMovie) {
+            setIsShortMovies(savedShortMovie === 'true');
+        }
+    
+        if (savedSearchResults) {
+            setSearchResults(savedSearchResults);
+        }
+      }, []);
 
     useEffect(() => {
         let timeoutId;
@@ -36,9 +50,12 @@ function Movies({isLoading, movies, searchHistory, handleGetMovies}) {
       }, []);
 
     useEffect(() => {
-        const results = searchFilter(movies, keyword); 
-        setSearchResults(results);
-        calculatePageRow();
+        if (movies.length > 0) {
+            const results = searchFilter(movies, keyword); 
+            setSearchResults(results);
+            calculatePageRow();
+            localStorage.setItem('searchResults', JSON.stringify(results));
+        } 
      }, [movies, keyword]);
      
     function calculatePageRow() {
@@ -66,6 +83,8 @@ function Movies({isLoading, movies, searchHistory, handleGetMovies}) {
             if (movies.length<1) {
                 handleGetMovies();
             }
+
+            
         } catch (error) {
             setError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
         }
@@ -77,6 +96,12 @@ function Movies({isLoading, movies, searchHistory, handleGetMovies}) {
                  movieCard.nameEN.toLowerCase().includes(keyword.toLowerCase().trim());
         }); 
     }
+    function handleShortChange() { 
+        const newState = !isShortMovies;
+        setIsShortMovies(newState);
+        localStorage.setItem('shortMovie', newState);
+ 
+    }
 
     function loadMoreMovies(){ 
             setVisibleCards(visibleCards + moviesInRow)
@@ -84,7 +109,7 @@ function Movies({isLoading, movies, searchHistory, handleGetMovies}) {
       
     return (
         <main>
-            <Search movies={movies} handleInputChange={handleInputChange} searchHistory={searchHistory} />
+            <Search isShortMovies={isShortMovies} handleShortChange={handleShortChange} handleInputChange={handleInputChange}  />
             <section className="movies">
            
             {isLoading ? (

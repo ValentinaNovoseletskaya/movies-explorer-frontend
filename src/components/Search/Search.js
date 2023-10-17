@@ -1,26 +1,28 @@
 import './Search.css';
 import {useState, useEffect} from 'react';
 
-function Search({ handleInputChange, searchHistory }) {
+function Search({ isShortMovies, handleShortChange, handleInputChange }) {
 
-  const [keyword, setKeyword] = useState(null);
-  const [findShorts, setFindShorts] = useState(false);
- 
+  const [keyword, setKeyword] = useState('');
+  useEffect(() => {
+    const savedSearchText = localStorage.getItem('searchText'); 
 
- 
+    if (savedSearchText) {
+        setKeyword(savedSearchText);
+    }
+
+  }, []);
+
   function handleClickSearch(e){
     e.preventDefault();
     
     if (keyword) {
-      handleInputChange(keyword); 
-    
+      handleInputChange(keyword);
+      localStorage.setItem('searchText', keyword);
     }
-    
-     
+  
   }
-  function handleChange(e) {
-    setFindShorts(!findShorts);
-  }
+ 
 
     return (
         <section className="search">
@@ -29,7 +31,7 @@ function Search({ handleInputChange, searchHistory }) {
             <button type="submit" className='search__button' onClick={handleClickSearch} ></button>
           </form>      
           <div className="search__shorts">
-            <input type="checkbox" className='search__shorts-button' onChange={handleChange} checked={findShorts} />
+            <input type="checkbox" className='search__shorts-button' onChange={handleShortChange} checked={isShortMovies} />
             <p className="search__shorts-text">Короткометражки</p>              
           </div>
         </section>
