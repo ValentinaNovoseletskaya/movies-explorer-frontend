@@ -39,6 +39,7 @@ function App() {
                 console.log(err);
             });
         } 
+        setCurrentUser({});
     }, []);
 
     useEffect(() => {
@@ -179,6 +180,7 @@ function App() {
             .then((userData) => {
                 setCurrentUser(userData);
                 setUseLoggedInToken(true);
+                localStorage.setItem('token', userData._id);
                 navigate('/movies');
             }).catch((err) => {
                 console.log(err);
@@ -193,6 +195,8 @@ function App() {
         localStorage.removeItem('shortMovie');
         localStorage.removeItem('searchResults');
         setCurrentUser(null);
+        setMovies([]);
+        setSavedMovies([]);
         navigate('/');
     } 
 

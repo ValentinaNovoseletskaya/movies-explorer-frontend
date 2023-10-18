@@ -1,6 +1,6 @@
 import './Movie.css';
 import { useState } from 'react';
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Movie({ movie, isSaved, handleAddMovie, handleDeleteMovie}) {
     
@@ -31,7 +31,8 @@ function Movie({ movie, isSaved, handleAddMovie, handleDeleteMovie}) {
 
     return (
         <div className="movie"  >
-            <img className="movie__image" src={`${movie.image} `} alt="Обложка фильма"/>
+            <Link className="movie__link" target="_blank" to={`${movie.trailerLink}`} ><img className="movie__image" src={`${movie.image} `} alt="Обложка фильма"/></Link>
+            
             <div className="movie__title">
                 <h3 className="movie__text">{movie.nameRU}</h3>
                 {isSavedPage ? 

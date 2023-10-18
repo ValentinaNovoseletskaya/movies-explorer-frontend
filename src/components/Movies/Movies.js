@@ -29,10 +29,14 @@ function Movies({isLoading, movies, savedMovies, handleGetMovies, handleAddMovie
         if (savedShortMovie) {
             const isTrue = savedShortMovie === 'true'
             setIsShortMovies(isTrue);
+        } else {
+            setIsShortMovies(false);
         }
     
         if (savedSearchResults) {
             setSearchResults(savedSearchResults);
+        } else {
+            setSearchResults([]);
         }
       }, []);
 
@@ -55,11 +59,16 @@ function Movies({isLoading, movies, savedMovies, handleGetMovies, handleAddMovie
       }, []);
 
     useEffect(() => {
-        if (movies.length > 0 ) {
-            const results = searchFilter(movies, keyword, isShortMovies); 
-            setSearchResults(results);
-            calculatePageRow();
-            localStorage.setItem('searchResults', JSON.stringify(results));
+       if (movies.length > 0 ) {
+            if (keyword === '') {
+                setSearchResults([]);
+                localStorage.removeItem('searchResults');
+            } else {
+                const results = searchFilter(movies, keyword, isShortMovies); 
+                setSearchResults(results);
+                calculatePageRow();
+                localStorage.setItem('searchResults', JSON.stringify(results));
+            }
         } 
      }, [movies, keyword, isShortMovies]);
     
