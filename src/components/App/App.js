@@ -13,9 +13,7 @@ import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import Profile from '../Profile/Profile';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
-import Popup from '../Popup/Popup';
-import {userData} from '../../utils/userData'
-import {moviesImages} from '../../utils/moviesImages';
+import Popup from '../Popup/Popup';  
 
 function App() {
     const navigate = useNavigate();

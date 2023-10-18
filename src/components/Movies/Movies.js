@@ -4,14 +4,18 @@ import { useLocation } from "react-router-dom";
 import Preloader from '../Preloader/Preloader';
 import Movie from '../Movie/Movie';
 import Search from '../Search/Search';
+import {searchFilter} from '../../utils/utils';
 
 function Movies({isLoading, movies, savedMovies, handleGetMovies, handleAddMovie, handleDeleteMovie}) { 
     const location = useLocation();
     const isSavedPage = location.pathname === "/saved-movies";
 
     const [keyword, setKeyword] = useState('');
+    const [savedKeyword, setSavedKeyword] = useState('');
     const [isShortMovies, setIsShortMovies] = useState(false);
+    const [isSavedShortMovies, setIsSavedShortMovies] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
+    const [savedSearchResults, setSavedSearchResults] = useState([]);
     const [error, setError] = useState(null);
     const [visibleCards, setVisibleCards] = useState(0);
     const [moviesInRow, setMoviesInRow] = useState(0);
@@ -21,9 +25,10 @@ function Movies({isLoading, movies, savedMovies, handleGetMovies, handleAddMovie
     useEffect(() => {
         const savedShortMovie = localStorage.getItem('shortMovie');
         const savedSearchResults = JSON.parse(localStorage.getItem('searchResults'));
-        
+ 
         if (savedShortMovie) {
-            setIsShortMovies(savedShortMovie === 'true');
+            const isTrue = savedShortMovie === 'true'
+            setIsShortMovies(isTrue);
         }
     
         if (savedSearchResults) {
@@ -50,14 +55,18 @@ function Movies({isLoading, movies, savedMovies, handleGetMovies, handleAddMovie
       }, []);
 
     useEffect(() => {
-        if (movies.length > 0 && keyword !== '') {
+        if (movies.length > 0 ) {
             const results = searchFilter(movies, keyword, isShortMovies); 
             setSearchResults(results);
             calculatePageRow();
             localStorage.setItem('searchResults', JSON.stringify(results));
         } 
      }, [movies, keyword, isShortMovies]);
-     
+    
+    useEffect(() => { 
+        handleSavedResultUpdate();
+    }, [savedMovies, savedKeyword, isSavedShortMovies]);
+    
     function calculatePageRow() {
 
         if (window.innerWidth >= 480 ) { 
@@ -77,7 +86,36 @@ function Movies({isLoading, movies, savedMovies, handleGetMovies, handleAddMovie
         setKeyword(keyword);
         handleSearchChange();
     }
+    function handleSavedInputChange(keyword) {
+       
+        setError(null);
+        setSavedKeyword(keyword);
+        handleSavedResultUpdate();
+    }
+    
+    function handleShortChange(e) { 
+        const newState = !isShortMovies;
+        setIsShortMovies(newState);
+        localStorage.setItem('shortMovie', newState);
+        handleSearchChange();
+ 
+    }
 
+    function handleSavedShortChange(e) {
+        const newState = !isSavedShortMovies;
+        setIsSavedShortMovies(newState);
+      }
+      
+
+    function handleSavedResultUpdate() {
+
+        const results = searchFilter(savedMovies, savedKeyword, isSavedShortMovies); 
+        setSavedSearchResults(results);
+    }
+    function loadMoreMovies(){ 
+            setVisibleCards(visibleCards + moviesInRow)
+      };
+    
     function handleSearchChange() {
         try {
             if (movies.length<1) {
@@ -88,48 +126,39 @@ function Movies({isLoading, movies, savedMovies, handleGetMovies, handleAddMovie
             setError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
         }
     }
-    function searchFilter(movieArray, keyword, isShortMovies) {
-        return movieArray.filter((movieCard) => {
-          const isMatchingKeyword = movieCard.nameRU.toLowerCase().includes(keyword.toLowerCase().trim()) ||
-            movieCard.nameEN.toLowerCase().includes(keyword.toLowerCase().trim());
-          const isShortDuration = movieCard.duration < 40;
-      
-          if (isShortMovies) {
-            return isMatchingKeyword && isShortDuration;
-          } else {
-            return isMatchingKeyword;
-          }
-        });
-      }
-      
-    function handleShortChange() { 
-        const newState = !isShortMovies;
-        setIsShortMovies(newState);
-        localStorage.setItem('shortMovie', newState);
- 
-    }
-
-    function loadMoreMovies(){ 
-            setVisibleCards(visibleCards + moviesInRow)
-      };
- 
       
     return (
         <main>
-            <Search isShortMovies={isShortMovies} handleShortChange={handleShortChange} handleInputChange={handleInputChange}  />
+            {isSavedPage ? (
+                <Search isSavedPage={isSavedPage} isShortMovies={isSavedShortMovies} handleShortChange={handleSavedShortChange} handleInputChange={handleSavedInputChange}  />
+            ) : (
+                <Search isShortMovies={isShortMovies} handleShortChange={handleShortChange} handleInputChange={handleInputChange}  />
+            )}
             <section className="movies">
-           
+            
             {isLoading ? (
                 <Preloader/>
                 ) : error ? (
                     <div className="error-message">{error}</div>
-                ) : isSavedPage ? (
+                ) : savedSearchResults.length > 0 ? (
                     <>
                     <div className="movies__container" >
-                       {savedMovies.map((movie) => (
+                       {savedSearchResults.map((movie) => (
                            <Movie key={movie.movieId} movie={movie} handleAddMovie={handleAddMovie} handleDeleteMovie={handleDeleteMovie}/>   
                        ))}              
                    </div> 
+                    </>
+                ) : isSavedPage ? (
+                    <>
+                    {savedMovies.length === 0 ? 
+                        <div className="no-results">Ничего не найдено</div>
+                    :
+                        <div className="movies__container" >
+                        {savedMovies.map((movie) => (
+                            <Movie key={movie.movieId} movie={movie} handleAddMovie={handleAddMovie} handleDeleteMovie={handleDeleteMovie}/>   
+                        ))}              
+                    </div> 
+                   }
                     </>
                 ) : searchResults.length === 0 ? (
                     <div className="no-results">Ничего не найдено</div>

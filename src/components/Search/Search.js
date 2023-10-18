@@ -1,25 +1,28 @@
 import './Search.css';
 import {useState, useEffect} from 'react';
 
-function Search({ isShortMovies, handleShortChange, handleInputChange }) {
+function Search({ isSavedPage, isShortMovies, handleShortChange, handleInputChange }) {
 
   const [keyword, setKeyword] = useState('');
   useEffect(() => {
-    const savedSearchText = localStorage.getItem('searchText'); 
 
-    if (savedSearchText) {
-        setKeyword(savedSearchText);
+    if (!isSavedPage) {
+      const savedSearchText = localStorage.getItem('searchText'); 
+
+      if (savedSearchText) {
+          setKeyword(savedSearchText);
+      }
     }
 
   }, []);
 
   function handleClickSearch(e){
     e.preventDefault();
-    
-    if (keyword) {
+     
       handleInputChange(keyword);
-      localStorage.setItem('searchText', keyword);
-    }
+      if (!isSavedPage) {
+        localStorage.setItem('searchText', keyword);
+      } 
   
   }
  
