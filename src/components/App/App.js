@@ -1,6 +1,6 @@
 import {mainApi} from '../../utils/MainApi.js';
 import {movieApi} from '../../utils/MovieApi.js';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from "react-router-dom";
 import {CurrentUserContext} from '../../contexts/CurrentUserContext.js';
 import './App.css';
@@ -11,9 +11,9 @@ import Signup from '../Signup/Signup';
 import Login from '../Login/Login';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import Profile from '../Profile/Profile';
-import Movies from '../Movies/Movies';
-import SavedMovies from '../SavedMovies/SavedMovies';
-import Popup from '../Popup/Popup';  
+import Movies from '../Movies/Movies'; 
+import Popup from '../Popup/Popup'; 
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.js';
 
 function App() {
     const navigate = useNavigate();
@@ -25,8 +25,24 @@ function App() {
     const [isLoading, setIsLoading] = useState(false);
     const [authError, setAuthError] = useState(null);
 
+
+    useEffect(() => {
+        const token = localStorage.getItem('token') 
+        if (token) {
+            mainApi.getUserInfo()
+            .then((userData) => {
+                setCurrentUser(userData);
+                setUseLoggedInToken(true); 
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        } 
+    }, []);
+
     useEffect(() => {
         if(useLoggedInToken) {
+         handleGetSavedMovies()
          mainApi.getUserInfo()
              .then((userData) => {
                  setCurrentUser(userData);
@@ -36,26 +52,8 @@ function App() {
              });
          }
      }, [useLoggedInToken]);
-
-     /// for logged in
-    useEffect(() => { 
-        handleGetSavedMovies()
-    }, []);
-
-    useEffect(() => {
-        const token = localStorage.getItem('token') 
-        if (token) {
-            mainApi.getUserInfo()
-            .then((data) => {
-                setUseLoggedInToken(true);
-                // navigate('/movies');
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        }
-        // eslint-disable-next-line
-    }, []);
+ 
+ 
 
     function handleMenuClick() {
         setIsMenuOpen(true);
@@ -67,14 +65,12 @@ function App() {
 
     function handleSubmit(request) {
         request()
-            .then(() => {
-                // closeAllPopups();закрыть прелоудер
+            .then(() => { 
             })
             .catch((err) => {
                 console.error(`Ошибка: ${err}`);
             })
-            .finally(() => {
-                // setIsLoading(false);
+            .finally(() => { 
             });
     }
 
@@ -200,16 +196,19 @@ function App() {
                     <Route path="/" element={
                         <><Header handleMenuClick={handleMenuClick}/><Main /><Footer /></>
                     } />
+
+                    
                     <Route path="/signup" element={<Signup onSignup={handleSignupSubmit} authError={authError} />} />
                     <Route path="/signin" element={<Login onLogIn={handleLoginSubmit} authError={authError} />} />
+
                     <Route path="/profile" element={
-                        <><Header handleMenuClick={handleMenuClick}/><Profile user={currentUser} onLogout={handleLoggedOut} onUpdate={handleUpdateUser}/></>
+                        <><Header handleMenuClick={handleMenuClick}/><ProtectedRoute element={Profile} user={currentUser} onLogout={handleLoggedOut} onUpdate={handleUpdateUser}/></>
                     } />
                     <Route path="/movies" element={
-                        <><Header handleMenuClick={handleMenuClick}/><Movies isLoading={isLoading} movies={movies} savedMovies={savedMovies} handleAddMovie={handleAddMovie} handleDeleteMovie={handleDeleteMovie} handleGetMovies={handleGetMovies} /><Footer /></>
+                        <><Header handleMenuClick={handleMenuClick}/><ProtectedRoute element={Movies} isLoading={isLoading} movies={movies} savedMovies={savedMovies} handleAddMovie={handleAddMovie} handleDeleteMovie={handleDeleteMovie} handleGetMovies={handleGetMovies} /><Footer /></>
                     } />
                     <Route path="/saved-movies" element={
-                        <><Header handleMenuClick={handleMenuClick}/><Movies isLoading={isLoading} movies={movies} savedMovies={savedMovies} handleAddMovie={handleAddMovie} handleDeleteMovie={handleDeleteMovie} handleGetMovies={handleGetMovies}  /><Footer /></>
+                        <><Header handleMenuClick={handleMenuClick}/><ProtectedRoute element={Movies} isLoading={isLoading} movies={movies} savedMovies={savedMovies} handleAddMovie={handleAddMovie} handleDeleteMovie={handleDeleteMovie} handleGetMovies={handleGetMovies}  /><Footer /></>
                     } />
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>

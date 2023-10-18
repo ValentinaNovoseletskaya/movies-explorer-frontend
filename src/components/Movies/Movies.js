@@ -108,9 +108,11 @@ function Movies({isLoading, movies, savedMovies, handleGetMovies, handleAddMovie
       
 
     function handleSavedResultUpdate() {
-
-        const results = searchFilter(savedMovies, savedKeyword, isSavedShortMovies); 
-        setSavedSearchResults(results);
+        setSavedSearchResults([]);
+        if (isSavedPage) {
+            const results = searchFilter(savedMovies, savedKeyword, isSavedShortMovies); 
+            setSavedSearchResults(results);
+        }
     }
     function loadMoreMovies(){ 
             setVisibleCards(visibleCards + moviesInRow)
@@ -140,25 +142,26 @@ function Movies({isLoading, movies, savedMovies, handleGetMovies, handleAddMovie
                 <Preloader/>
                 ) : error ? (
                     <div className="error-message">{error}</div>
-                ) : savedSearchResults.length > 0 ? (
-                    <>
-                    <div className="movies__container" >
-                       {savedSearchResults.map((movie) => (
-                           <Movie key={movie.movieId} movie={movie} handleAddMovie={handleAddMovie} handleDeleteMovie={handleDeleteMovie}/>   
-                       ))}              
-                   </div> 
-                    </>
                 ) : isSavedPage ? (
-                    <>
-                    {savedMovies.length === 0 ? 
-                        <div className="no-results">Ничего не найдено</div>
-                    :
-                        <div className="movies__container" >
-                        {savedMovies.map((movie) => (
-                            <Movie key={movie.movieId} movie={movie} handleAddMovie={handleAddMovie} handleDeleteMovie={handleDeleteMovie}/>   
-                        ))}              
-                    </div> 
-                   }
+                    <> 
+                        { (savedKeyword !== ''|| isSavedShortMovies )&& savedSearchResults.length === 0 ? (
+                            <div className="no-results">Ничего не найдено</div>
+                        ) : savedSearchResults.length > 0 ? (
+                            <>
+                            <div className="movies__container" >
+                                {savedSearchResults.map((movie) => (
+                                    <Movie key={movie.movieId} movie={movie} handleAddMovie={handleAddMovie} handleDeleteMovie={handleDeleteMovie}/>   
+                                ))}              
+                            </div> 
+                            </>
+                        ) 
+                        :
+                            <div className="movies__container" >
+                            {savedMovies.map((movie) => (
+                                <Movie key={movie.movieId} movie={movie} handleAddMovie={handleAddMovie} handleDeleteMovie={handleDeleteMovie}/>   
+                            ))}              
+                        </div> 
+                    }
                     </>
                 ) : searchResults.length === 0 ? (
                     <div className="no-results">Ничего не найдено</div>

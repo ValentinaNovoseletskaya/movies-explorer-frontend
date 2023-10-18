@@ -1,10 +1,19 @@
 import './Signup.css';
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import { useEffect, useState, useContext} from 'react';
+import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
-import {inputSignup} from '../../utils/formsConfig.js';
+import { inputSignup } from '../../utils/formsConfig.js';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
 function Signup({onSignup, authError}) {
+  const currentUser = useContext(CurrentUserContext);
+  const navigate = useNavigate();
+ 
+  useEffect(() => {
+    navigate('/');
+ }, [currentUser]);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
