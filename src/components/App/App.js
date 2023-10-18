@@ -18,12 +18,13 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.js';
 function App() {
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const [currentUser, setCurrentUser] = useState('');
+    const [currentUser, setCurrentUser] = useState(null);
     const [useLoggedInToken, setUseLoggedInToken] = useState(false);
     const [movies, setMovies] = useState([]);
     const [savedMovies, setSavedMovies] = useState([]); 
     const [isLoading, setIsLoading] = useState(false);
     const [authError, setAuthError] = useState(null);
+    const [updateError, setUpdateError] = useState(null);
 
 
     useEffect(() => {
@@ -145,10 +146,16 @@ function App() {
     }
 
     function handleUpdateUser(user) {
+        setUpdateError(false);
         function makeRequest() { 
             return mainApi.editUserInfo(user).then((userData) => {
                 setCurrentUser(userData);
+            }).catch((err) => {
+                console.log(err);
+                setUpdateError(err);
             });
+
+            
         }
         handleSubmit(makeRequest);
     }
@@ -169,7 +176,8 @@ function App() {
     function handleSignupSubmit(formData) {
         setAuthError(false);       
         mainApi.signup(formData)
-            .then(() => {
+            .then((userData) => {
+                setCurrentUser(userData);
                 setUseLoggedInToken(true);
                 navigate('/movies');
             }).catch((err) => {
@@ -202,7 +210,7 @@ function App() {
                     <Route path="/signin" element={<Login onLogIn={handleLoginSubmit} authError={authError} />} />
 
                     <Route path="/profile" element={
-                        <><Header handleMenuClick={handleMenuClick}/><ProtectedRoute element={Profile} user={currentUser} onLogout={handleLoggedOut} onUpdate={handleUpdateUser}/></>
+                        <><Header handleMenuClick={handleMenuClick}/><ProtectedRoute element={Profile} user={currentUser} onLogout={handleLoggedOut} onUpdate={handleUpdateUser} updateError={updateError}/></>
                     } />
                     <Route path="/movies" element={
                         <><Header handleMenuClick={handleMenuClick}/><ProtectedRoute element={Movies} isLoading={isLoading} movies={movies} savedMovies={savedMovies} handleAddMovie={handleAddMovie} handleDeleteMovie={handleDeleteMovie} handleGetMovies={handleGetMovies} /><Footer /></>
