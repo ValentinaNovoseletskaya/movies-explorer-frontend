@@ -11,7 +11,9 @@ function Signup({onSignup, authError}) {
   const navigate = useNavigate();
  
   useEffect(() => {
-    navigate('/');
+    if(currentUser) {
+      navigate('/');
+    }
  }, [currentUser]);
 
   const [formData, setFormData] = useState({

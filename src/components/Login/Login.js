@@ -1,10 +1,21 @@
 import './Login.css';
-import {useState} from 'react';
-import {Link} from 'react-router-dom';
+import { useEffect, useState, useContext } from 'react';
+import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
-import {inputLogin} from '../../utils/formsConfig.js';
+import { inputLogin } from '../../utils/formsConfig.js';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
 function Login({onLogIn, authError}) {
+  const currentUser = useContext(CurrentUserContext);
+  const navigate = useNavigate();
+ 
+  useEffect(() => {
+    if(currentUser) {
+      navigate('/');
+    }
+ }, [currentUser]);
+
   const [formData, setFormData] = useState({
     email: '',
     password: ''

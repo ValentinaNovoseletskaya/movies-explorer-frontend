@@ -65,7 +65,7 @@ function Movies({isLoading, movies, savedMovies, handleGetMovies, handleAddMovie
     
     useEffect(() => { 
         handleSavedResultUpdate();
-    }, [savedMovies, savedKeyword, isSavedShortMovies]);
+    }, [ savedMovies, savedKeyword, isSavedShortMovies]);
     
     function calculatePageRow() {
 

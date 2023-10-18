@@ -14,7 +14,7 @@ function Search({ isSavedPage, isShortMovies, handleShortChange, handleInputChan
       }
     }
 
-  }, []);
+  }, [isSavedPage]);
 
   function handleClickSearch(e){
     e.preventDefault();
