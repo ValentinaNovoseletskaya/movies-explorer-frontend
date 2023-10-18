@@ -23,10 +23,9 @@ function App() {
     const [currentUser, setCurrentUser] = useState('');
     const [useLoggedInToken, setUseLoggedInToken] = useState(false);
     const [movies, setMovies] = useState([]);
-    const [savedMovies, setSavedMovies] = useState([]);
-    const [searchHistory, setSearchHistory] = useState(null);
+    const [savedMovies, setSavedMovies] = useState([]); 
     const [isLoading, setIsLoading] = useState(false);
-    const [isAuthFail, setIsAuthFail] = useState(false);
+    const [authError, setAuthError] = useState(null);
 
     useEffect(() => {
         if(useLoggedInToken) {
@@ -41,11 +40,7 @@ function App() {
      }, [useLoggedInToken]);
 
      /// for logged in
-    useEffect(() => {
-        const searchHistory = localStorage.getItem('searchHistory') 
-        if (searchHistory) {
-            setSearchHistory(searchHistory);
-        }
+    useEffect(() => { 
         handleGetSavedMovies()
     }, []);
 
@@ -165,6 +160,7 @@ function App() {
     }
 
     function handleLoginSubmit(formData) {
+        setAuthError(false);  
         mainApi.signin(formData)
             .then((data) => {
               setUseLoggedInToken(true);
@@ -172,18 +168,19 @@ function App() {
               navigate('/movies');
             }).catch((err) => {
                 console.log(err);
-                setIsAuthFail(true);
+                setAuthError(true);
             });
     }
 
-    function handleSignupSubmit(formData) {        
+    function handleSignupSubmit(formData) {
+        setAuthError(false);       
         mainApi.signup(formData)
             .then(() => {
                 setUseLoggedInToken(true);
                 navigate('/movies');
             }).catch((err) => {
                 console.log(err);
-                setIsAuthFail(true);
+                setAuthError(true);
             });
     }
 
@@ -205,8 +202,8 @@ function App() {
                     <Route path="/" element={
                         <><Header handleMenuClick={handleMenuClick}/><Main /><Footer /></>
                     } />
-                    <Route path="/signup" element={<Signup onSignup={handleSignupSubmit} />} />
-                    <Route path="/signin" element={<Login onLogIn={handleLoginSubmit} />} />
+                    <Route path="/signup" element={<Signup onSignup={handleSignupSubmit} authError={authError} />} />
+                    <Route path="/signin" element={<Login onLogIn={handleLoginSubmit} authError={authError} />} />
                     <Route path="/profile" element={
                         <><Header handleMenuClick={handleMenuClick}/><Profile user={currentUser} onLogout={handleLoggedOut} onUpdate={handleUpdateUser}/></>
                     } />

@@ -89,6 +89,12 @@
     opacity: 80%;
 }
 
+.login__button:disabled {
+    background-color: rgba(239, 239, 239, 0.3) ;
+    opacity: 80%;
+    cursor: not-allowed;
+}   
+
 @media (max-width: 450px) {
     .login__button {
         font-size: 12px;
@@ -171,5 +177,9 @@
     font-size: 10px;
     font-weight: 400;
     line-height: 12.1px;
+    color: #EE3465;
+}
+
+.authError {
     color: #EE3465;
 }

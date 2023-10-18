@@ -4,8 +4,12 @@ import {Link} from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import {inputSignup} from '../../utils/formsConfig.js';
 
-function Signup({onSignup}) {
-  const [formData, setFormData] = useState({});
+function Signup({onSignup, authError}) {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: ''
+  });
   const [formErrors, setFormErrors] = useState({});
 
   function handleSubmit(e) {
@@ -18,6 +22,12 @@ function Signup({onSignup}) {
       email: formData.email,
       password: formData.password,
     });
+  }
+
+  const formDataValues = Object.values(formData);
+  const isDisabled = () => {
+     
+      return formDataValues.length === 0 || formDataValues.some(item => !item) || Object.values(formErrors).some(item => item)        
   }
 
   return (
@@ -49,7 +59,8 @@ function Signup({onSignup}) {
           </div>
         })} 
         </fieldset>
-        <button type="submit" className='signup__save-button signup__button'>Зарегистрироваться</button>
+        { authError && <div class="authError">Пользователь с такой почтой уже зарегистрирован</div> }
+        <button disabled={isDisabled()} type="submit" className='signup__save-button signup__button'>Зарегистрироваться</button>
       </form>      
       <div className="signup__login">
         <p className="signup__login-text">Уже зарегистрированы?&nbsp;</p>

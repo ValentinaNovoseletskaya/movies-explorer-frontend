@@ -4,8 +4,11 @@ import {Link} from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import {inputLogin} from '../../utils/formsConfig.js';
 
-function Login({onLogIn}) {
-  const [formData, setFormData] = useState({});
+function Login({onLogIn, authError}) {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
   const [formErrors, setFormErrors] = useState({});  
 
   function handleSubmit(e) {
@@ -18,6 +21,13 @@ function Login({onLogIn}) {
         password: formData.password,
     });
   }
+
+  const formDataValues = Object.values(formData);
+  const isDisabled = () => {
+     
+      return formDataValues.length === 0 || formDataValues.some(item => !item) || Object.values(formErrors).some(item => item)        
+  }
+
 
     return (
         <main className="login">
@@ -48,7 +58,8 @@ function Login({onLogIn}) {
               </div>
             })} 
             </fieldset>
-            <button type="submit" className='login__button'>Войти</button>
+            { authError && <div class="authError">Некорректно введены почта или пароль</div> }
+            <button disabled={isDisabled()}  type="submit" className='login__button'>Войти</button>
           </form>      
           <div className="login__signup">
               <p className="login__signup-text">Еще не зарегистрированы?&nbsp;</p>
