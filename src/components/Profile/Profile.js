@@ -32,21 +32,21 @@ function Profile({onLogout, onUpdate}) {
       email: formData.email,
     });
   }
-
+ 
     return (
         <main className="profile">
             <h2 className="profile__welcome">Привет, {currentUser.name}!</h2>
             <form className="profile__form">
                 <div className="profile__name  profile__name_underlined">
                     <label className="profile__input-name">Имя</label>
-                    <input className="profile__input" id="name" name="name" type="text" placeholder="Имя" value={formData.name || '' }
+                    <input disabled={!isEditProfile} className="profile__input" id="name" name="name" type="text" placeholder="Имя" value={formData.name || '' }
                     onChange={ e=>{
                         setFormData({...formData, name: e.target.value})
                     } } />
                 </div>
                 <div className="profile__name">
                     <label className="profile__input-name">E-mail</label>
-                    <input className="profile__input" id="email" name="email" type="email" placeholder="E-mail" value={formData.email || '' }
+                    <input disabled={!isEditProfile}  className="profile__input" id="email" name="email" type="email" placeholder="E-mail" value={formData.email || '' }
                     onChange={ e=>{
                     setFormData({...formData, email: e.target.value})
                     } } />
