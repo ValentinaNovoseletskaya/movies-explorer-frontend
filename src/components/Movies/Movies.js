@@ -51,12 +51,12 @@ function Movies({isLoading, movies, savedMovies, handleGetMovies, handleAddMovie
 
     useEffect(() => {
         if (movies.length > 0 && keyword !== '') {
-            const results = searchFilter(movies, keyword); 
+            const results = searchFilter(movies, keyword, isShortMovies); 
             setSearchResults(results);
             calculatePageRow();
             localStorage.setItem('searchResults', JSON.stringify(results));
         } 
-     }, [movies, keyword]);
+     }, [movies, keyword, isShortMovies]);
      
     function calculatePageRow() {
 
@@ -88,13 +88,20 @@ function Movies({isLoading, movies, savedMovies, handleGetMovies, handleAddMovie
             setError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
         }
     }
-    function searchFilter(movieArray, keyword) {
- 
+    function searchFilter(movieArray, keyword, isShortMovies) {
         return movieArray.filter((movieCard) => {
-          return movieCard.nameRU.toLowerCase().includes(keyword.toLowerCase().trim()) ||
-                 movieCard.nameEN.toLowerCase().includes(keyword.toLowerCase().trim());
-        }); 
-    }
+          const isMatchingKeyword = movieCard.nameRU.toLowerCase().includes(keyword.toLowerCase().trim()) ||
+            movieCard.nameEN.toLowerCase().includes(keyword.toLowerCase().trim());
+          const isShortDuration = movieCard.duration < 40;
+      
+          if (isShortMovies) {
+            return isMatchingKeyword && isShortDuration;
+          } else {
+            return isMatchingKeyword;
+          }
+        });
+      }
+      
     function handleShortChange() { 
         const newState = !isShortMovies;
         setIsShortMovies(newState);
