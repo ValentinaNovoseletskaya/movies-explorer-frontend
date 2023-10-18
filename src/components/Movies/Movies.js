@@ -1,11 +1,11 @@
 import './Movies.css';
-import { useRef, useEffect, useState} from 'react';
+import { useEffect, useState} from 'react';
 import { useLocation } from "react-router-dom";
 import Preloader from '../Preloader/Preloader';
 import Movie from '../Movie/Movie';
 import Search from '../Search/Search';
 
-function Movies({isLoading, movies, searchHistory, handleGetMovies}) { 
+function Movies({isLoading, movies, savedMovies, handleGetMovies, handleAddMovie, handleDeleteMovie}) { 
     const location = useLocation();
     const isSavedPage = location.pathname === "/saved-movies";
 
@@ -15,13 +15,13 @@ function Movies({isLoading, movies, searchHistory, handleGetMovies}) {
     const [error, setError] = useState(null);
     const [visibleCards, setVisibleCards] = useState(0);
     const [moviesInRow, setMoviesInRow] = useState(0);
-    const moviesContainerRef = useRef({});
-    const movieCardRef = useRef({});
+ 
+    
 
     useEffect(() => {
         const savedShortMovie = localStorage.getItem('shortMovie');
         const savedSearchResults = JSON.parse(localStorage.getItem('searchResults'));
-        console.log(savedSearchResults);
+        
         if (savedShortMovie) {
             setIsShortMovies(savedShortMovie === 'true');
         }
@@ -50,7 +50,7 @@ function Movies({isLoading, movies, searchHistory, handleGetMovies}) {
       }, []);
 
     useEffect(() => {
-        if (movies.length > 0) {
+        if (movies.length > 0 && keyword !== '') {
             const results = searchFilter(movies, keyword); 
             setSearchResults(results);
             calculatePageRow();
@@ -83,7 +83,6 @@ function Movies({isLoading, movies, searchHistory, handleGetMovies}) {
             if (movies.length<1) {
                 handleGetMovies();
             }
-
             
         } catch (error) {
             setError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
@@ -106,6 +105,7 @@ function Movies({isLoading, movies, searchHistory, handleGetMovies}) {
     function loadMoreMovies(){ 
             setVisibleCards(visibleCards + moviesInRow)
       };
+ 
       
     return (
         <main>
@@ -115,15 +115,24 @@ function Movies({isLoading, movies, searchHistory, handleGetMovies}) {
             {isLoading ? (
                 <Preloader/>
                 ) : error ? (
-                <div className="error-message">{error}</div>
+                    <div className="error-message">{error}</div>
+                ) : isSavedPage ? (
+                    <>
+                    <div className="movies__container" >
+                       {savedMovies.map((movie) => (
+                           <Movie key={movie.movieId} movie={movie} handleAddMovie={handleAddMovie} handleDeleteMovie={handleDeleteMovie}/>   
+                       ))}              
+                   </div> 
+                    </>
                 ) : searchResults.length === 0 ? (
-                <div className="no-results">Ничего не найдено</div>
+                    <div className="no-results">Ничего не найдено</div>
                 ) : (
                 <>
-                     <div className="movies__container" ref={moviesContainerRef}>
-                        {searchResults.slice(0, visibleCards).map((movie) => (
-                            <Movie movieCardRef={movieCardRef} movie={movie}/>   
-                        ))}              
+                     <div className="movies__container" >
+                        {searchResults.slice(0, visibleCards).map((movie) => {
+                            const isSaved = savedMovies.some(savedmovie => savedmovie.movieId === movie.movieId); 
+                            return <Movie key={movie.movieId} movie={movie} isSaved={!isSaved} handleAddMovie={handleAddMovie} handleDeleteMovie={handleDeleteMovie}/>   
+                        })}              
                     </div>
                     {searchResults.length > visibleCards && (
                         <div className="movies__add-block">

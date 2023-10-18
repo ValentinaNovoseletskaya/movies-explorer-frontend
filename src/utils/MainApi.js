@@ -16,15 +16,6 @@ class MainApi {
       }
     }
 
-    // getInitialCards() {
-    //   return this._request(`${this._baseUrl}/movies`, {
-    //     credentials: 'include',
-    //     headers: this._headers
-    //   });
-    // }
-
-    // getMovies()
-
     signin(data) {
       return this._request(`${this._baseUrl}/signin`, {
         method: "POST",

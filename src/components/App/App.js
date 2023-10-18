@@ -40,11 +40,13 @@ function App() {
          }
      }, [useLoggedInToken]);
 
+     /// for logged in
     useEffect(() => {
         const searchHistory = localStorage.getItem('searchHistory') 
         if (searchHistory) {
             setSearchHistory(searchHistory);
         }
+        handleGetSavedMovies()
     }, []);
 
     useEffect(() => {
@@ -53,7 +55,7 @@ function App() {
             mainApi.getUserInfo()
             .then((data) => {
                 setUseLoggedInToken(true);
-                navigate('/movies');
+                // navigate('/movies');
             })
             .catch((err) => {
                 console.log(err);
@@ -98,9 +100,9 @@ function App() {
                             duration: movie.duration,
                             year: movie.year,
                             description: movie.description,
-                            image: movie.image.url,
+                            image: (`https://api.nomoreparties.co${movie.image.url}`),
                             trailerLink: movie.trailerLink,
-                            thumbnail: movie.image.formats.thumbnail.url, 
+                            thumbnail: (`https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`),
                         })
                     }); 
                 setMovies(newMovies);
@@ -122,22 +124,35 @@ function App() {
     }
 
     function handleAddMovie(movie) {        
-        function makeRequest() { 
+        function makeRequest() {
             return mainApi.addMovie(movie).then((newMovie) => {
-                setSavedMovies([newMovie, ...movies]);
+                setSavedMovies([newMovie, ...savedMovies]);
             });
         }
-        handleSubmit(makeRequest);
+
+        const movieID = movie.movieId;
+        const movieExists = savedMovies.some(movie => movie.movieId === movieID);
+        if (!movieExists) {
+            const userId = currentUser._id;
+            movie.owner = userId;
+            handleSubmit(makeRequest);
+        } 
     }
 
     function handleDeleteMovie(movie) {
         function makeRequest() {
-            return mainApi.removeMovie(movie._id).then(() => {
-                const newMovies = savedMovies.filter(m => m._id !== movie._id);
+            return mainApi.removeMovie(movieExists._id).then(() => {
+                const newMovies = savedMovies.filter(m => m.movieId !== movie.movieId);
                 setSavedMovies(newMovies);
             });
         }
-        handleSubmit(makeRequest);
+        const movieID = movie.movieId;
+        const movieExists = savedMovies.find(movie => movie.movieId === movieID);
+        if (movieExists) {
+            handleSubmit(makeRequest);
+        } 
+         
+         
     }
 
     function handleUpdateUser(user) {
@@ -196,10 +211,10 @@ function App() {
                         <><Header handleMenuClick={handleMenuClick}/><Profile user={currentUser} onLogout={handleLoggedOut} onUpdate={handleUpdateUser}/></>
                     } />
                     <Route path="/movies" element={
-                        <><Header handleMenuClick={handleMenuClick}/><Movies isLoading={isLoading} movies={movies} searchHistory={searchHistory} handleGetMovies={handleGetMovies} /><Footer /></>
+                        <><Header handleMenuClick={handleMenuClick}/><Movies isLoading={isLoading} movies={movies} savedMovies={savedMovies} handleAddMovie={handleAddMovie} handleDeleteMovie={handleDeleteMovie} handleGetMovies={handleGetMovies} /><Footer /></>
                     } />
                     <Route path="/saved-movies" element={
-                        <><Header handleMenuClick={handleMenuClick}/><SavedMovies movies={moviesImages} handleGetSavedMovies={handleGetSavedMovies}/><Footer /></>
+                        <><Header handleMenuClick={handleMenuClick}/><Movies isLoading={isLoading} movies={movies} savedMovies={savedMovies} handleAddMovie={handleAddMovie} handleDeleteMovie={handleDeleteMovie} handleGetMovies={handleGetMovies}  /><Footer /></>
                     } />
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
