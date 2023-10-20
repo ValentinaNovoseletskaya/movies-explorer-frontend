@@ -1,4 +1,4 @@
-import '../Movies/Movies.css';
+import './MoviesCardList.css';
 import { useEffect, useState} from 'react'; 
 import Preloader from '../Preloader/Preloader';
 import Movie from '../Movie/Movie'; 

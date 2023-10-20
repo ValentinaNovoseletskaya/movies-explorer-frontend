@@ -1,4 +1,3 @@
-import './Movies.css';
 import { useCallback, useEffect, useState} from 'react'; 
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Search from '../Search/Search';
