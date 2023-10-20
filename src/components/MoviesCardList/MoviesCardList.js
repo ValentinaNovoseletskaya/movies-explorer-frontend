@@ -2,6 +2,7 @@ import './MoviesCardList.css';
 import { useEffect, useState} from 'react'; 
 import Preloader from '../Preloader/Preloader';
 import Movie from '../Movie/Movie'; 
+import { SMALL_WINDOWS, CARD_WIDTH, CARD_IN_ROW_LIMIT, CARD_SMALL_IN_ROW_LIMIT, CARD_SMALL_VISIBLE_LIMIT } from '../../utils/constants';
 
 function MoviesCardList({isLoading, displayMovies, savedMovies, handleAddMovie, handleDeleteMovie, error, showOnlySaved}) { 
    
@@ -35,14 +36,14 @@ function MoviesCardList({isLoading, displayMovies, savedMovies, handleAddMovie, 
     
     function calculatePageRow() {
 
-        if (window.innerWidth >= 480 ) { 
-            const newMoviesInRow = Math.floor(window.innerWidth / 320) > 4 ? 4 : Math.floor(window.innerWidth / 320);
+        if (window.innerWidth >= SMALL_WINDOWS ) { 
+            const newMoviesInRow = Math.floor(window.innerWidth / CARD_WIDTH) > CARD_IN_ROW_LIMIT ? CARD_IN_ROW_LIMIT : Math.floor(window.innerWidth / CARD_WIDTH);
             setMoviesInRow(newMoviesInRow);
             const newVisibleCards = Number(newMoviesInRow*4);
             setVisibleCards(newVisibleCards);
-        } else if (window.innerWidth <= 480) {
-            setMoviesInRow(2);
-            const newVisibleCards = 5;
+        } else if (window.innerWidth <= SMALL_WINDOWS) {
+            setMoviesInRow(CARD_SMALL_IN_ROW_LIMIT);
+            const newVisibleCards = CARD_SMALL_VISIBLE_LIMIT;
             setVisibleCards(newVisibleCards);
         }
     } 

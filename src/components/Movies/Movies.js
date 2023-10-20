@@ -2,6 +2,9 @@ import { useCallback, useEffect, useState} from 'react';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Search from '../Search/Search';
 import { filterByKeyword, filterByIsShortMovies } from '../../utils/utils';
+import { GET_MOVIES_ERROR_TEST } from '../../utils/constants';
+
+
 
  
 function Movies({isLoading, savedMovies, handleGetMovies, handleAddMovie, handleDeleteMovie}) { 
@@ -25,12 +28,12 @@ function Movies({isLoading, savedMovies, handleGetMovies, handleAddMovie, handle
                 
         } catch (error) {
             console.log(error);
-            setError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
+            setError(GET_MOVIES_ERROR_TEST);
         } 
-    }, [movies]);
+    }, [movies, handleGetMovies]);
  
     function handleSearchUpdate(movies, keyword) {  
-        if (keyword !=''){ 
+        if (keyword !==''){ 
             const results = filterByKeyword(movies, keyword); 
             setSearchResults(results); 
             localStorage.setItem('searchResults', JSON.stringify(results)); 

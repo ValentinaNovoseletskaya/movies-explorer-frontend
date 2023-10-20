@@ -1,3 +1,5 @@
+import { MOVIES_API_URL } from './constants';
+
 class MovieApi {
     constructor(baseUrl, headers) {
       this._headers = headers;
@@ -27,6 +29,6 @@ const headers = {
     "Content-Type": "application/json"
 };
   
-const baseUrl = 'https://api.nomoreparties.co';
+const baseUrl = MOVIES_API_URL;
 
 export const movieApi = new MovieApi(baseUrl, headers);

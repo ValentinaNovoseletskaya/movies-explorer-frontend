@@ -8,11 +8,10 @@ function SavedMovies({savedMovies, handleDeleteMovie}) {
  
     const [isShortMovies, setIsShortMovies] = useState(false); 
     const [searchResults, setSearchResults] = useState([]); 
-    const [displayMovies, setDisplayMovies] = useState([]); 
-    const [error, setError] = useState(null);  
+    const [displayMovies, setDisplayMovies] = useState([]);  
 
     const handleInputChange = useCallback( (keyword) => {   
-        if (keyword !=''){ 
+        if (keyword !==''){ 
             const results = filterByKeyword(savedMovies, keyword); 
             setSearchResults(results);  
         } else { 
@@ -55,7 +54,7 @@ function SavedMovies({savedMovies, handleDeleteMovie}) {
              
             <Search isShortMovies={isShortMovies} handleShortChange={handleShortChange} handleInputChange={handleInputChange} showOnlySaved={isSavedPage} />
              
-            <MoviesCardList displayMovies={displayMovies} handleDeleteMovie={handleDeleteMovie} error={error} showOnlySaved={isSavedPage}/>
+            <MoviesCardList displayMovies={displayMovies} handleDeleteMovie={handleDeleteMovie} showOnlySaved={isSavedPage}/>
        
         </main>
     );

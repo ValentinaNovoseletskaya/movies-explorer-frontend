@@ -1,3 +1,5 @@
+import { MAIN_API_URL } from './constants';
+
 class MainApi {
     constructor(baseUrl, headers) {
       this._headers = headers;
@@ -86,6 +88,6 @@ const headers = {
     "Content-Type": "application/json"
 };
   
-const baseUrl = 'https://api.moviexplore.nomoredomainsrocks.ru';
+const baseUrl = MAIN_API_URL;
 
 export const mainApi = new MainApi(baseUrl, headers);
