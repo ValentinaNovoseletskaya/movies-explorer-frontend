@@ -1,14 +1,15 @@
-export function searchFilter(movieArray, keyword, isShortMovies) {
+export function filterByKeyword(movieArray, keyword) {
   return movieArray.filter((movieCard) => {
-    const isMatchingKeyword = keyword.length === '' ||
+    return keyword.length === '' ||
       movieCard.nameRU.toLowerCase().includes(keyword.toLowerCase().trim()) ||
       movieCard.nameEN.toLowerCase().includes(keyword.toLowerCase().trim());
-    const isShortDuration = movieCard.duration < 40;
-
-    if (isShortMovies) {
-      return isMatchingKeyword && isShortDuration;
-    } else {
-      return isMatchingKeyword;
-    }
   });
 }
+
+export function filterByIsShortMovies(movieArray, isShortMovies) {
+  return movieArray.filter((movieCard) => {
+    const isShortDuration = movieCard.duration < 40;
+    return isShortMovies ? isShortDuration : true;
+  });
+}
+

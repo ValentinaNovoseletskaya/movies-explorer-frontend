@@ -1,25 +1,24 @@
 import './Movie.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from "react-router-dom";
 
 function Movie({ movie, isSaved, handleAddMovie, handleDeleteMovie}) {
     
     const location = useLocation();
     const isSavedPage = location.pathname === "/saved-movies";
+ 
+    const [isLiked, setIsLiked] = useState(false);
 
-    const [isLiked, setIsLiked] = useState(!isSaved);
-
+    
     function handleLikeClick() {
         if (isLiked) {
             handleDeleteMovie(movie);
         } else {
             handleAddMovie(movie);
-        }
-        setIsLiked(!isLiked);
+        } 
     };
     function handleDisLikeClick() {
-        handleDeleteMovie(movie);
-        setIsLiked(false);   
+        handleDeleteMovie(movie); 
     };
 
     function formatDuration(minutes){
@@ -29,6 +28,10 @@ function Movie({ movie, isSaved, handleAddMovie, handleDeleteMovie}) {
         return `${hours}${remainingMinutes.toString().padStart(2, '0')}м`;
       };
 
+      useEffect(() => { 
+        setIsLiked(!isSaved);
+         
+    }, [isSaved]);
     return (
         <div className="movie"  >
             <Link className="movie__link" target="_blank" to={`${movie.trailerLink}`} ><img className="movie__image" src={`${movie.image} `} alt="Обложка фильма"/></Link>

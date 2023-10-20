@@ -1,26 +1,28 @@
 import './Search.css';
 import {useState, useEffect} from 'react';
 
-function Search({ isSavedPage, isShortMovies, handleShortChange, handleInputChange }) {
+function Search({ showOnlySaved, isShortMovies, handleShortChange, handleInputChange }) {
 
   const [keyword, setKeyword] = useState('');
   useEffect(() => {
 
-    if (!isSavedPage) {
+    if (!showOnlySaved) {
       const savedSearchText = localStorage.getItem('searchText'); 
 
       if (savedSearchText) {
           setKeyword(savedSearchText);
       }
+    } else {
+      setKeyword('');
     }
 
-  }, [isSavedPage]);
+  }, [showOnlySaved]);
 
   function handleClickSearch(e){
     e.preventDefault();
      
       handleInputChange(keyword);
-      if (!isSavedPage) {
+      if (!showOnlySaved) {
         localStorage.setItem('searchText', keyword);
       } 
   

@@ -16,6 +16,13 @@ class MainApi {
       }
     }
 
+    signout() {
+      return this._request(`${this._baseUrl}/signout`, {
+        credentials: 'include',
+        headers: this._headers
+      }); 
+    }
+
     signin(data) {
       return this._request(`${this._baseUrl}/signin`, {
         method: "POST",
