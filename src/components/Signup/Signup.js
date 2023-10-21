@@ -12,9 +12,9 @@ function Signup({onSignup, authError}) {
  
   useEffect(() => {
     if(currentUser) {
-      navigate('/');
+      navigate('/movies');
     }
- }, [currentUser]);
+ }, [currentUser, navigate]);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -22,6 +22,24 @@ function Signup({onSignup, authError}) {
     password: ''
   });
   const [formErrors, setFormErrors] = useState({});
+
+  function handleUserInput(e) {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    const errorMessage = e.target.validationMessage;
+    validateFields(name, value, errorMessage)
+    
+  }
+
+  function validateFields(name, value, errorMessage){
+    if (name === "email") {
+      errorMessage = (/^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/.test(value)) ? false : 'E-mail должен быть в формате email@domain.name';
+      setFormErrors({...formErrors, [name]: errorMessage || ''})
+    } else { 
+      setFormErrors({...formErrors, [name]: errorMessage || ''})
+    }
+
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -61,9 +79,7 @@ function Signup({onSignup, authError}) {
               maxLength={maxLength}
               value={formData[name] || '' }
               onChange={ e=>{
-                setFormData({...formData, [name]: e.target.value})
-                const errorMessage = e.target.validationMessage
-                setFormErrors({...formErrors, [name]: errorMessage || ''})
+                handleUserInput(e) 
               } }
             /> 
             <span className="signup__error" >{formErrors[name]}</span>

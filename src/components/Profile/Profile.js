@@ -20,6 +20,23 @@ function Profile({onLogout, onUpdate, updateError}) {
     }) 
   }, [currentUser]);
   
+  function handleUserInput(e) {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    const errorMessage = e.target.validationMessage;
+    validateFields(name, value, errorMessage)
+    
+  }
+  
+  function validateFields(name, value, errorMessage){
+    if (name === "email") {
+      errorMessage = (/^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/.test(value)) ? false : 'E-mail должен быть в формате email@domain.name';
+      setFormErrors({...formErrors, [name]: errorMessage || ''})
+    } else { 
+      setFormErrors({...formErrors, [name]: errorMessage || ''})
+    }
+
+  }
 
   function handleEditClick(e) {
     e.preventDefault();
@@ -61,9 +78,7 @@ function Profile({onLogout, onUpdate, updateError}) {
                               maxLength={maxLength}
                               value={formData[name] || '' }
                               onChange={ e=>{
-                                setFormData({...formData, [name]: e.target.value})
-                                const errorMessage = e.target.validationMessage
-                                setFormErrors({...formErrors, [name]: errorMessage || ''})
+                                handleUserInput(e) 
                               } }
                             /> 
                           </div>

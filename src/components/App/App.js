@@ -150,14 +150,12 @@ function App() {
         }
         handleSubmit(makeRequest);
     }
-
+ 
     function handleLoginSubmit(formData) {
         setAuthError(false);  
         mainApi.signin(formData)
             .then((data) => {
-              setUseLoggedInToken(true);
-              localStorage.setItem('token', data.token);
-              navigate('/movies');
+              setUseLoggedInToken(true);  
             }).catch((err) => {
                 console.log(err);
                 setAuthError(true);
@@ -169,9 +167,7 @@ function App() {
         mainApi.signup(formData)
             .then((userData) => {
                 setCurrentUser(userData);
-                setUseLoggedInToken(true);
-                localStorage.setItem('token', userData._id);
-                navigate('/movies');
+                setUseLoggedInToken(true);  
             }).catch((err) => {
                 console.log(err);
                 setAuthError(true);
@@ -216,11 +212,6 @@ function App() {
                             <Route path="/" element={
                                 <><Header handleMenuClick={handleMenuClick}/><Main /><Footer /></>
                             } />
-
-                            
-                            <Route path="/signup" element={<Signup onSignup={handleSignupSubmit} authError={authError} />} />
-                            <Route path="/signin" element={<Login onLogIn={handleLoginSubmit} authError={authError} />} />
-
                             <Route path="/profile" element={
                                 <><Header handleMenuClick={handleMenuClick}/><ProtectedRoute element={Profile} onLogout={handleLoggedOut} onUpdate={handleUpdateUser} updateError={updateError}/></>
                             } />
@@ -230,6 +221,10 @@ function App() {
                             <Route path="/saved-movies" element={
                                 <><Header handleMenuClick={handleMenuClick}/><ProtectedRoute element={SavedMovies} isLoading={isLoading} savedMovies={savedMovies} handleAddMovie={handleAddMovie} handleDeleteMovie={handleDeleteMovie} handleGetMovies={handleGetMovies}  /><Footer /></>
                             } />
+                            
+                            <Route path="/signup" element={<Signup onSignup={handleSignupSubmit} authError={authError} />} />
+                            <Route path="/signin" element={<Login onLogIn={handleLoginSubmit} authError={authError} />} />
+
                             <Route path="*" element={<NotFoundPage />} />
                         </Routes>
                         </div>
