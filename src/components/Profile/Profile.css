@@ -163,3 +163,12 @@
     }
 
     
+    .authError {
+        color: #EE3465;
+    }
+
+
+    .updateSuccess {
+        font-size: 14px;
+        color: #4BB543;
+    }

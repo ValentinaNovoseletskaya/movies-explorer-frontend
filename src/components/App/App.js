@@ -26,9 +26,10 @@ function App() {
     const [savedMovies, setSavedMovies] = useState([]); 
     const [isLoading, setIsLoading] = useState(false);
     const [authError, setAuthError] = useState(null);
-    const [updateError, setUpdateError] = useState(null);
+    const [updateError, setUpdateError] = useState(false);
+    const [updateSuccess, setUpdateSuccess] = useState(false);
 
-
+    
     const hanldeUserLoggedIn = useCallback(() => { 
             mainApi.getUserInfo()
             .then((userData) => {
@@ -141,12 +142,11 @@ function App() {
         function makeRequest() { 
             return mainApi.editUserInfo(user).then((userData) => {
                 setCurrentUser(userData);
+                setUpdateSuccess(true);
             }).catch((err) => {
                 console.log(err);
                 setUpdateError(err);
             });
-
-            
         }
         handleSubmit(makeRequest);
     }
@@ -213,7 +213,7 @@ function App() {
                                 <><Header handleMenuClick={handleMenuClick}/><Main /><Footer /></>
                             } />
                             <Route path="/profile" element={
-                                <><Header handleMenuClick={handleMenuClick}/><ProtectedRoute element={Profile} onLogout={handleLoggedOut} onUpdate={handleUpdateUser} updateError={updateError}/></>
+                                <><Header handleMenuClick={handleMenuClick}/><ProtectedRoute element={Profile} onLogout={handleLoggedOut} onUpdate={handleUpdateUser} updateError={updateError} updateSuccess={updateSuccess}/></>
                             } />
                             <Route path="/movies" element={
                                 <><Header handleMenuClick={handleMenuClick}/><ProtectedRoute element={Movies} isLoading={isLoading} savedMovies={savedMovies} handleAddMovie={handleAddMovie} handleDeleteMovie={handleDeleteMovie} handleGetMovies={handleGetMovies} /><Footer /></>
