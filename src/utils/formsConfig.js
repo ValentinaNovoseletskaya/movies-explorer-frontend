@@ -34,6 +34,30 @@ export const inputLogin = [
     {
         labelclassName: 'login__input-name',
         className: 'login__input',
+        type: 'email',
+        placeholder: 'E-mail',
+        name: 'email', 
+        required: true,
+    },
+    {   
+        labelclassName: 'login__input-name',
+        className: 'login__input',
+        type: 'password',
+        placeholder: 'Пароль',
+        name: 'password',
+        minLength: '6',
+        maxLength: '18',
+        required: true,
+    },
+]
+
+
+  
+export const inputProfile = [
+    {
+        underclassName: 'profile__name profile__name_underlined',
+        labelclassName: 'profile__input-name',
+        className: 'profile__input',
         type: 'text',
         placeholder: 'Имя',
         name: 'name',
@@ -41,12 +65,13 @@ export const inputLogin = [
         maxLength: '40',
         required: true,
     },
-    {   
-        labelclassName: 'login__input-name',
-        className: 'login__input',
+    {
+        underclassName: 'profile__name',
+        labelclassName: 'profile__input-name',
+        className: 'profile__input',
         type: 'email',
         placeholder: 'E-mail',
         name: 'email', 
         required: true,
-    },
+    }
 ]

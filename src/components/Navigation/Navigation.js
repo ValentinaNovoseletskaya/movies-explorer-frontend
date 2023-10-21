@@ -1,10 +1,13 @@
 import './Navigation.css';
+import { useContext } from 'react';
 import { Route, Routes, Link } from "react-router-dom";
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
 function Navigation({isMainPage, handleMenuClick}) {
+    const currentUser = useContext(CurrentUserContext);
     return (
         <>
-            {isMainPage ?
+            {!currentUser ?
            <Routes>
                 <Route path="/" element={
                     <nav className="navigation__container">
