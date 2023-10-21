@@ -4,7 +4,7 @@ import { Link} from 'react-router-dom';
 import { inputProfile } from '../../utils/formsConfig.js';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
-function Profile({onLogout, onUpdate, updateError, updateSuccess}) {
+function Profile({onLogout, onUpdate, updateError, updateSuccess, handleSetSuccess}) {
   const currentUser = useContext(CurrentUserContext);
   const [isEditProfile, setIsEditProfile] = useState(false);
   const [userError, setUserError] = useState(false);
@@ -57,6 +57,7 @@ function Profile({onLogout, onUpdate, updateError, updateSuccess}) {
   function handleEditClick(e) {
     e.preventDefault();
     setIsEditProfile(true);
+    handleSetSuccess();
   }
 
   function handleSaveClick(e) {

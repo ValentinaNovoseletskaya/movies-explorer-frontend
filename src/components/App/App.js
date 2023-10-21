@@ -132,9 +132,7 @@ function App() {
         const movieExists = savedMovies.find(movie => movie.movieId === movieID);
         if (movieExists) {
             handleSubmit(makeRequest);
-        } 
-         
-         
+        }
     }
 
     function handleUpdateUser(user) {
@@ -149,6 +147,10 @@ function App() {
             });
         }
         handleSubmit(makeRequest);
+    }
+
+    function handleSetSuccess(){
+        setUpdateSuccess(false);
     }
  
     function handleLoginSubmit(formData) {
@@ -213,7 +215,7 @@ function App() {
                                 <><Header handleMenuClick={handleMenuClick}/><Main /><Footer /></>
                             } />
                             <Route path="/profile" element={
-                                <><Header handleMenuClick={handleMenuClick}/><ProtectedRoute element={Profile} onLogout={handleLoggedOut} onUpdate={handleUpdateUser} updateError={updateError} updateSuccess={updateSuccess}/></>
+                                <><Header handleMenuClick={handleMenuClick}/><ProtectedRoute element={Profile} onLogout={handleLoggedOut} onUpdate={handleUpdateUser} updateError={updateError} updateSuccess={updateSuccess} handleSetSuccess={handleSetSuccess}/></>
                             } />
                             <Route path="/movies" element={
                                 <><Header handleMenuClick={handleMenuClick}/><ProtectedRoute element={Movies} isLoading={isLoading} savedMovies={savedMovies} handleAddMovie={handleAddMovie} handleDeleteMovie={handleDeleteMovie} handleGetMovies={handleGetMovies} /><Footer /></>
